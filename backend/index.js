@@ -3,6 +3,7 @@
 // IMPORTS
 const express = require('express');
 const {createValidation, updateValidation} = require('./types.js');
+const {toDo} = require('./db.js');
 
 
 
@@ -13,40 +14,70 @@ const app = express();
 app.use(express.json());
 
 // step 3 - define routes
-app.post('/todo', (req, res) => {
+app.post('/todo', async (req, res) => {
 
     // get data from req
-    const toDo = req.body;
+    const createPayload = req.body;
 
     // validate using zod
-    const parsedToDo = createValidation.safeParse(toDo);
+    const parsedToDo = createValidation.safeParse(createPayload);
     if(!parsedToDo.success){
         res.status(411).json({
-            msg: "You sent the wrong inputs!";
+            msg: "You sent the wrong inputs!"
         })
         return;
     }
+
+    // store in db
+    await toDo.create({
+        title: createPayload.title,
+        description: createPayload.description,
+        completed: false
+    }) //Note - since we have added await, the pointer will not move to next line, if this code throws error it will be catched by global error handler and 'TODO created' will not be sent.
+
+    // send back the res
+    res.json({
+        msg: "ToDo created."
+    })
 })
 
-app.get('/todos', (req, res) => {
+app.get('/todos', async(req, res) => {
     
+    // get data from db
+    const todos = await toDo.find();
+
+    // send back the res
+    res.json({
+        msg: "All stored todos",
+        payload: todos
+    })
     
 })
 
 
-app.put('/completed', (req, res) => {
+app.put('/completed', async (req, res) => {
     
     // get data from req
-    const toDoId = req.body;
+    const updatePayload = req.body;
 
     // validate using zod
-    const parsedToDoId = updateValidation.safeParse(toDoId);
+    const parsedToDoId = updateValidation.safeParse(updatePayload);
     if(!parsedToDoId.success){
         res.status(411).json({
             msg: "You sent the wrong inputs."
         })
         return;
     }
+
+    // update the data in db
+    await toDo.updateOne({_id: updatePayload.id}, {
+        completed: true
+    })
+
+    // send back the res
+    res.json({
+        msg: "Todo marked as completed."
+    })
 })
 
 
