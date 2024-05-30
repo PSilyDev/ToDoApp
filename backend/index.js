@@ -18,7 +18,6 @@ app.post('/todo', async (req, res) => {
 
     // get data from req
     const createPayload = req.body;
-
     // validate using zod
     const parsedToDo = createValidation.safeParse(createPayload);
     if(!parsedToDo.success){

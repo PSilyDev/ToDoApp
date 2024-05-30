@@ -2,7 +2,6 @@
 
 // IMPORTS
 const mongoose = require('mongoose');
-const { Schema } = require('zod');
 require('dotenv').config()
 
 // step 1 - connect to mongodb
@@ -15,7 +14,7 @@ const ToDoSchema = new mongoose.Schema({
     completed: Boolean
 })
 
-// step 3 - create model for schemas
+// // step 3 - create model for schemas
 const ToDo = mongoose.model('ToDo', ToDoSchema);
 
 // step 4 - export models
