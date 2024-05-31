@@ -1,9 +1,12 @@
 import './App.css'
+import { CreateToDo } from './components/CreateToDo'
+import { Todos } from './components/Todos'
 
 function App() {
   return (
     <>
-      hi there
+      <CreateToDo />
+      <Todos />
     </>
   )
 }
