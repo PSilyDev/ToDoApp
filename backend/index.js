@@ -4,6 +4,7 @@
 const express = require('express');
 const {createValidation, updateValidation} = require('./types.js');
 const {toDo} = require('./db.js');
+const cors = require('cors');
 
 
 
@@ -12,6 +13,8 @@ const app = express();
 
 // step 2 - add body parser middleware
 app.use(express.json());
+
+app.use(cors());
 
 // step 3 - define routes
 app.post('/todo', async (req, res) => {
@@ -58,7 +61,7 @@ app.put('/completed', async (req, res) => {
     
     // get data from req
     const updatePayload = req.body;
-
+    console.log(updatePayload);
     // validate using zod
     const parsedToDoId = updateValidation.safeParse(updatePayload);
     if(!parsedToDoId.success){
