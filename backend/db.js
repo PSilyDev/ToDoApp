@@ -8,6 +8,12 @@ require('dotenv').config()
 mongoose.connect('mongodb+srv://PSilyDev:%40Yashsri01@100xdev.crsftik.mongodb.net/');
 
 // step 2 - define schemas
+
+const UserSchema = new mongoose.Schema({
+    username: String,
+    password: String
+})
+
 const ToDoSchema = new mongoose.Schema({
     title: String,
     description: String,
@@ -15,9 +21,11 @@ const ToDoSchema = new mongoose.Schema({
 })
 
 // // step 3 - create model for schemas
+const User = mongoose.model('User', UserSchema);
 const ToDo = mongoose.model('ToDo', ToDoSchema);
 
 // step 4 - export models
 module.exports = {
-    toDo: ToDo
+    toDo: ToDo,
+    user: User
 }

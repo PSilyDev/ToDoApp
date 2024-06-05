@@ -2,8 +2,8 @@
 
 // IMPORTS
 const express = require('express');
-const {createValidation, updateValidation} = require('./types.js');
-const {toDo} = require('./db.js');
+const { signupValidation, createValidation, updateValidation } = require('./types.js');
+const { user,toDo } = require('./db.js');
 const cors = require('cors');
 
 
@@ -17,6 +17,32 @@ app.use(express.json());
 app.use(cors());
 
 // step 3 - define routes
+
+app.post('/signup', async(req, res) => {
+    
+    // get data from req
+    const singupPayload = req.body;
+    console.log(singupPayload);
+    // validate using zod
+    const parsedUser = signupValidation.safeParse(singupPayload);
+    if(!parsedUser.success){
+        res.status(411).json({
+            msg: "You sent the wrong inputs!"
+        })
+        return;
+    }
+
+    // store in db
+    await user.create({
+        username: singupPayload.username,
+        password: singupPayload.password
+    })
+
+    // send back the res
+    res.json({
+        msg: "User created successfully."
+    })
+})
 app.post('/todo', async (req, res) => {
 
     // get data from req
