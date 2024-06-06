@@ -3,6 +3,7 @@
 // IMPORTS
 const express = require('express');
 const { signupValidation, createValidation, updateValidation } = require('./types.js');
+const { hashPassword } = require('./middlewares/hashPassword.js')
 const { user,toDo } = require('./db.js');
 const cors = require('cors');
 
@@ -18,11 +19,14 @@ app.use(cors());
 
 // step 3 - define routes
 
-app.post('/signup', async(req, res) => {
+app.post('/signup', hashPassword, async(req, res) => {
+
     
     // get data from req
-    const singupPayload = req.body;
-    console.log(singupPayload);
+    const singupPayload = {
+        username: req.body.username,
+        password: res.locals.hashedPassword
+    }
     // validate using zod
     const parsedUser = signupValidation.safeParse(singupPayload);
     if(!parsedUser.success){
