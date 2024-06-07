@@ -5,9 +5,9 @@ const zod = require('zod');
 
 // step 1 - define expected input types for all endpoints
 
-    // for post (/signup)
+    // for post (/signup, /login)
 
-const signupUser = zod.object({
+const authUser = zod.object({
     username: zod.string(),
     password: zod.string()
 })
@@ -29,5 +29,6 @@ const updateToDo = zod.object({
 module.exports = {
     createValidation: createToDo,
     updateValidation: updateToDo,
-    signupValidation: signupUser
+    authValidation: authUser,
+
 }

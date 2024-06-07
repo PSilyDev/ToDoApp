@@ -2,10 +2,11 @@
 
 // IMPORTS
 const express = require('express');
-const { signupValidation, createValidation, updateValidation } = require('./types.js');
+const { authValidation, createValidation, updateValidation } = require('./types.js');
 const { hashPassword } = require('./middlewares/hashPassword.js')
 const { user,toDo } = require('./db.js');
 const cors = require('cors');
+const bcrypt = require('bcryptjs');
 
 
 
@@ -28,7 +29,7 @@ app.post('/signup', hashPassword, async(req, res) => {
         password: res.locals.hashedPassword
     }
     // validate using zod
-    const parsedUser = signupValidation.safeParse(singupPayload);
+    const parsedUser = authValidation.safeParse(singupPayload);
     if(!parsedUser.success){
         res.status(411).json({
             msg: "You sent the wrong inputs!"
@@ -46,6 +47,47 @@ app.post('/signup', hashPassword, async(req, res) => {
     res.json({
         msg: "User created successfully."
     })
+})  
+
+app.post('/login', async(req, res) => {
+
+    // get data from req
+    const loginPayload = req.body;
+
+    // validate using zod
+    const parsedUser = authValidation.safeParse(loginPayload);
+    
+    if(!parsedUser.success){
+        res.status(411).json({
+            msg: "You sent the wrong inputs!"
+        })
+        return;
+    }
+
+    // authenticate credentials
+    isPresent = await user.findOne({username: loginPayload.username});
+    console.log(isPresent);
+    if(isPresent != null){
+        // check for password
+        isAuthenticated = await bcrypt.compare(loginPayload.password, isPresent.password);
+        if(isAuthenticated === true){
+            // signin successfull
+            res.json({
+                msg: "Signed in successfull"
+            })
+        }
+        else{
+            res.json({
+                msg: "Invalid password!"
+            })
+        }
+    }
+    else{
+        res.json({
+            msg: "Invalid username!"
+        })
+    }
+
 })
 app.post('/todo', async (req, res) => {
 
