@@ -7,6 +7,8 @@ const { hashPassword } = require('./middlewares/hashPassword.js')
 const { user,toDo } = require('./db.js');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+require('dotenv');
 
 
 
@@ -49,13 +51,13 @@ app.post('/signup', hashPassword, async(req, res) => {
     })
 })  
 
-app.post('/login', async(req, res) => {
+app.post('/signin', async(req, res) => {
 
     // get data from req
-    const loginPayload = req.body;
+    const signinPayload = req.body;
 
     // validate using zod
-    const parsedUser = authValidation.safeParse(loginPayload);
+    const parsedUser = authValidation.safeParse(signinPayload);
     
     if(!parsedUser.success){
         res.status(411).json({
@@ -65,15 +67,21 @@ app.post('/login', async(req, res) => {
     }
 
     // authenticate credentials
-    isPresent = await user.findOne({username: loginPayload.username});
+    isPresent = await user.findOne({username: signinPayload.username});
     console.log(isPresent);
     if(isPresent != null){
         // check for password
-        isAuthenticated = await bcrypt.compare(loginPayload.password, isPresent.password);
+        isAuthenticated = await bcrypt.compare(signinPayload.password, isPresent.password);
         if(isAuthenticated === true){
             // signin successfull
+
+            // create jsonwebtokens
+            const signedToken = jwt.sign({username: signinPayload.username}, process.env.SECRET_KEY);
+
+            // send back the response
             res.json({
-                msg: "Signed in successfull"
+                msg: "Signed in successfull",
+                token: signedToken
             })
         }
         else{
