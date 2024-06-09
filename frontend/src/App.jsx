@@ -4,6 +4,7 @@ import { CreateToDo } from './components/CreateToDo'
 import { Todos } from './components/Todos'
 import { Signup } from './components/Signup';
 import { Login } from './components/Login';
+import { Login2 } from './components/Login2';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -18,7 +19,8 @@ function App() {
       {/* <CreateToDo /> */}
       {/* <Todos todos={todos}/> */}
       {/* <Signup /> */}
-      <Login />
+      {/* <Login /> */}
+      <Login2 />
     </>
   )
 }
