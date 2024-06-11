@@ -20,7 +20,7 @@ function App() {
       {/* <Todos todos={todos}/> */}
       {/* <Signup /> */}
       {/* <Login /> */}
-      <Login2 />
+      {/* <Login2 /> */}
     </>
   )
 }
