@@ -1,5 +1,5 @@
 
-export function Todos({todos}){
+export function DisplayToDos({todos}){
 
     return(
         <>
@@ -8,8 +8,10 @@ export function Todos({todos}){
                 todos?.map((todo, index) => {
                     return(
                         <div key={index}>
+                            <p>{todo.date}</p>
                             <h1>{todo.title}</h1>
                             <h2>{todo.description}</h2>
+
                             <button onClick={() => {
                                 fetch('http://localhost:4000/completed',{
                                     method: "PUT",

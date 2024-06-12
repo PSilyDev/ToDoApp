@@ -17,7 +17,7 @@ const authUser = zod.object({
 const createToDo = zod.object({
     title: zod.string(),
     description: zod.string(),
-    date: zod.date(),
+    date: zod.string().date(),
     priority: zod.string()
 })
 

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import { CreateToDo } from './components/CreateToDo'
-import { Todos } from './components/Todos'
+import { DisplayToDos } from './components/DisplayToDos'
 import { Signup } from './components/Signup';
 import { Login } from './components/Login';
 import { Login2 } from './components/Login2';
+import { Toggle } from './components/toggle/Toggle';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -16,11 +17,12 @@ function App() {
   //   })
   return (
     <>
-      <CreateToDo />
-      {/* <Todos todos={todos}/> */}
+      {/* <CreateToDo />
+      <DisplayToDos todos={todos}/> */}
       {/* <Signup /> */}
       {/* <Login /> */}
       {/* <Login2 /> */}
+      <Toggle />
     </>
   )
 }
