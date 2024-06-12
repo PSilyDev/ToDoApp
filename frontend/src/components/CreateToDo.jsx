@@ -67,6 +67,16 @@ export function CreateToDo(){
                 {/* description */}
                 <input type="text" placeholder="description" {...register("description")}></input><br />
 
+                {/* date */}
+                <input type="date" {...register("date")}></input><br />
+
+                {/* priority */}
+                <select {...register("priority")}>
+                    <option value="high">High</option>
+                    <option value="med">Med</option>
+                    <option value="low">Low</option>
+                </select><br />
+
                 {/* submit button */}
                 <button type="submit">Add Todo</button><br />
 

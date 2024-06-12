@@ -114,6 +114,8 @@ app.post('/todo', async (req, res) => {
     await toDo.create({
         title: createPayload.title,
         description: createPayload.description,
+        date: createPayload.date,
+        priority: createPayload.priority,
         completed: false
     }) //Note - since we have added await, the pointer will not move to next line, if this code throws error it will be catched by global error handler and 'TODO created' will not be sent.
 
