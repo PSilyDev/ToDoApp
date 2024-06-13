@@ -1,5 +1,25 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-export function DisplayToDos({todos}){
+export function DisplayToDos(){
+
+    const [todos, setTodos] = useState([]);
+
+    useEffect(() => 
+        {
+            try{
+                axios.get('http://localhost:4000/todos')
+                    .then(response => {
+                        setTodos(response.data.payload || [])
+                        console.log('rendered');
+                    });
+            }
+            catch(err){
+                console.log('error fetching todos, error - ', err);
+            }
+        },
+        []
+    )
 
     return(
         <>
