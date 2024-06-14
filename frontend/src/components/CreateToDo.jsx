@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
+// import { useContext } from "react";
+// import { TodoContext } from "../App";
 
-export function CreateToDo(){
+export function CreateToDo({setUpdated}){
     // const [title, setTitle] = useState("");
     // const [desc, setDesc] = useState("");
     // return(
@@ -43,14 +45,18 @@ export function CreateToDo(){
     //     </>
     // )
 
-    const {register, handleSubmit} = useForm();
+    const { register, handleSubmit } = useForm();
+    // const { todos, setTodos } = useContext(TodoContext);
 
-    const onSubmit = async(data) => {
-        
+    const onSubmit = async(data) => {        
         try{
             const response = await axios.post('http://localhost:4000/todo', data);
             console.log(response.data);
-            alert(response.data.msg);
+            if(response.status === 201){
+                // setTodos([...todos ,data]);
+                setUpdated(true);
+                alert(response.data.msg);
+            }
         }
         catch(err){
             console.log(err);

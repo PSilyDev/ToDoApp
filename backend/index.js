@@ -120,7 +120,7 @@ app.post('/todo', async (req, res) => {
     }) //Note - since we have added await, the pointer will not move to next line, if this code throws error it will be catched by global error handler and 'TODO created' will not be sent.
 
     // send back the res
-    res.json({
+    res.status(201).json({
         msg: "ToDo created."
     })
 })
