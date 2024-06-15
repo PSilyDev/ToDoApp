@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export function DisplayToDos({updated}){
 
     const [todos, setTodos] = useState([]);
-    const [completed, setCompleted] = useState(false);
+    const [completed, setCompleted] = useState(0);
 
     useEffect(() => 
         {
@@ -19,24 +19,27 @@ export function DisplayToDos({updated}){
                 console.log('error fetching todos, error - ', err);
             }
         },
-        [updated]
+        [completed]
     )
 
     function updateCompleted(id){
-        setCompleted(true); 
-        fetch('http://localhost:4000/completed',{
-            method: "PUT",
-            body: JSON.stringify({
-                id: id
-            }),
-            headers: {
-                "Content-type": "application/json"
-            }
-        })
-            .then(async function(res){
-                const json = await res.json();
-                alert(json.msg);
-            })
+        setCompleted(completed+1); 
+
+        axios.put('http://localhost:4000/completed', {id})
+            .then(response => alert(response.data.msg));
+        // fetch('http://localhost:4000/completed',{
+        //     method: "PUT",
+        //     body: JSON.stringify({
+        //         id: id
+        //     }),
+        //     headers: {
+        //         "Content-type": "application/json"
+        //     }
+        // })
+        //     .then(async function(res){
+        //         const json = await res.json();
+        //         alert(json.msg);
+        //     })
     }
 
     return(
