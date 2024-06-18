@@ -19,9 +19,9 @@ export function DisplayToDos({updated}){
                 console.log('error fetching todos, error - ', err);
             }
         },
-        [completed]
+        []
     )
-
+    console.log(todos);
     function updateCompleted(id){
         setCompleted(completed+1); 
 

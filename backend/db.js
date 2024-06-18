@@ -17,6 +17,8 @@ const UserSchema = new mongoose.Schema({
 const ToDoSchema = new mongoose.Schema({
     title: String,
     description: String,
+    date: Date,
+    priority: String,
     completed: Boolean
 })
 

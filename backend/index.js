@@ -97,6 +97,7 @@ app.post('/signin', async(req, res) => {
     }
 
 })
+
 app.post('/todo', async (req, res) => {
 
     // get data from req
@@ -109,7 +110,7 @@ app.post('/todo', async (req, res) => {
         })
         return;
     }
-
+    console.log(createPayload);
     // store in db
     await toDo.create({
         title: createPayload.title,
