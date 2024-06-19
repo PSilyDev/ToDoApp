@@ -3,7 +3,7 @@ import axios from "axios";
 // import { useContext } from "react";
 // import { TodoContext } from "../App";
 
-export function CreateToDo({setUpdated}){
+export function CreateToDo({setTodos, fetchToDos}){
     // const [title, setTitle] = useState("");
     // const [desc, setDesc] = useState("");
     // return(
@@ -54,7 +54,8 @@ export function CreateToDo({setUpdated}){
             console.log(response.data);
             if(response.status === 201){
                 // setTodos([...todos ,data]);
-                setUpdated(true);
+                // setUpdated(s => !s);
+                fetchToDos();
                 alert(response.data.msg);
             }
         }

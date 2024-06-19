@@ -1,32 +1,46 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export function DisplayToDos({updated}){
+export function DisplayToDos({todos, fetchToDos}){
+    console.log('inside Display, updated - ', updated);
 
     const [todos, setTodos] = useState([]);
     const [completed, setCompleted] = useState(0);
 
     useEffect(() => 
         {
-            try{
-                axios.get('http://localhost:4000/todos')
-                    .then(response => {
-                        setTodos(response.data.payload || [])
-                        console.log('rendered');
-                    });
-            }
-            catch(err){
-                console.log('error fetching todos, error - ', err);
-            }
+            // try{
+            //     axios.get('http://localhost:4000/todos')
+            //         .then(response => {
+            //             setTodos(response.data.payload || [])
+            //             console.log('rendered');
+            //         });
+            // }
+            // catch(err){
+            //     console.log('error fetching todos, error - ', err);
+            // }
+            fetchToDos();
+
         },
         []
     )
     console.log(todos);
-    function updateCompleted(id){
-        setCompleted(completed+1); 
+    async function updateCompleted(id){
+        // setCompleted(c => c + 1); 
+        // setUpdated(s => !s);
+        try{
 
-        axios.put('http://localhost:4000/completed', {id})
-            .then(response => alert(response.data.msg));
+        
+            const response = await axios.put('http://localhost:4000/completed', {id})
+        
+            if(response.status === 200){
+                fetchToDos();
+                alert(response.data.msg);
+            }
+        }
+        catch(err){
+            console.log('Error while updating, error - ', err);
+        }
         // fetch('http://localhost:4000/completed',{
         //     method: "PUT",
         //     body: JSON.stringify({

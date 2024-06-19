@@ -160,7 +160,7 @@ app.put('/completed', async (req, res) => {
     })
 
     // send back the res
-    res.json({
+    res.status(200).json({
         msg: "Todo marked as completed."
     })
 })
