@@ -1,60 +1,16 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-// import { useContext } from "react";
-// import { TodoContext } from "../App";
 
-export function CreateToDo({setTodos, fetchToDos}){
-    // const [title, setTitle] = useState("");
-    // const [desc, setDesc] = useState("");
-    // return(
-    //     <>
-    //         <input style={{
-    //             padding: 10,
-    //             margin: 10
-    //         }} type="text" placeholder="title" onChange={function(event){
-    //             let value = event.target.value;
-    //             setTitle(value);
-    //         }}></input><br />
-    //         <input style={{
-    //             padding: 10,
-    //             margin: 10
-    //         }} type="text" placeholder="description" onChange={function(event){
-    //             let value = event.target.value;
-    //             setDesc(value);
-    //         }}></input><br />
 
-    //         <button style={{
-    //             padding: 10,
-    //             margin: 10
-    //         }} onClick={() => {
-    //             fetch('http://localhost:4000/todo',{
-    //                 method: "POST",
-    //                 body: JSON.stringify({
-    //                     title: title,
-    //                     description: desc
-    //                 }),
-    //                 headers: {
-    //                     "Content-type": "application/json"
-    //                 }
-    //             })
-    //                 .then(async function(res){
-    //                     const json = await res.json();
-    //                     alert("ToDo Added.")
-    //                 })
-    //         }}>Add Todo</button><br />
-    //     </>
-    // )
+export function CreateToDo({fetchToDos}){
 
     const { register, handleSubmit } = useForm();
-    // const { todos, setTodos } = useContext(TodoContext);
 
     const onSubmit = async(data) => {        
         try{
             const response = await axios.post('http://localhost:4000/todo', data);
             console.log(response.data);
             if(response.status === 201){
-                // setTodos([...todos ,data]);
-                // setUpdated(s => !s);
                 fetchToDos();
                 alert(response.data.msg);
             }
