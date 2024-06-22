@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Toggle } from "./toggle/Toggle";
 
 export function DisplayToDos({todos, fetchToDos}){
     
@@ -9,9 +10,7 @@ export function DisplayToDos({todos, fetchToDos}){
         },
         []
     )
-    console.log(todos);
     async function updateCompleted(id){
-        
         try{
         
             const response = await axios.put('http://localhost:4000/completed', {id})
@@ -27,6 +26,10 @@ export function DisplayToDos({todos, fetchToDos}){
         
     }
 
+    function handleOnChange(id){
+        console.log(`in progress for ${id}`);
+    }
+
     return(
         <>
 
@@ -37,6 +40,7 @@ export function DisplayToDos({todos, fetchToDos}){
                             <p>{todo.date}</p>
                             <h1>{todo.title}</h1>
                             <h2>{todo.description}</h2>
+                            <Toggle handleOnChange={handleOnChange} index = {index}/>
 
                             <button onClick={() => updateCompleted(todo._id)} disabled={todo.completed}>{todo.completed ? 'Completed' : 'Mark as completed'}</button>
                         </div>
