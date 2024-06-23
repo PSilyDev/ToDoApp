@@ -9,6 +9,7 @@ import { Login } from './components/Login';
 import { Login2 } from './components/Login2';
 import { Toggle } from './components/toggle/Toggle.jsx';
 import axios from 'axios';
+import ToDoCard from './components/ToDoCard.jsx';
 
 
 function App() {
@@ -26,13 +27,14 @@ function App() {
   return (
     <>
     {/* <TodoContext.Provider value={{todos, setTodos}}> */}
-      <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} />
-      <DisplayToDos todos = {todos} setTodos = {setTodos} fetchToDos = {fetchToDos} />
+      {/* <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
+      {/* <DisplayToDos todos = {todos} setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
       {/* <Signup /> */}
       {/* <Login /> */}
       {/* <Login2 /> */}
       {/* <Toggle /> */}
     {/* </TodoContext.Provider> */}
+    <ToDoCard />
     </>
   )
 }
