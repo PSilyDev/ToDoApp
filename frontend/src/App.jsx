@@ -28,13 +28,13 @@ function App() {
     <>
     {/* <TodoContext.Provider value={{todos, setTodos}}> */}
       {/* <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
-      {/* <DisplayToDos todos = {todos} setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
+      <DisplayToDos todos = {todos} setTodos = {setTodos} fetchToDos = {fetchToDos} />
       {/* <Signup /> */}
       {/* <Login /> */}
       {/* <Login2 /> */}
       {/* <Toggle /> */}
     {/* </TodoContext.Provider> */}
-    <ToDoCard />
+    {/* <ToDoCard /> */}
     </>
   )
 }
