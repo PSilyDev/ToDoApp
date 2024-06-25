@@ -24,11 +24,36 @@ function App() {
       console.log('Error while fetching, error - ', err);
     }
   }
+
+  const updateCompleted = async(id) => {
+    try{
+    
+        const response = await axios.put('http://localhost:4000/completed', {id})
+    
+        if(response.status === 200){
+            fetchToDos();
+            alert(response.data.msg);
+        }
+    }
+    catch(err){
+        console.log('Error while updating, error - ', err);
+    }  
+  }
+
+  const handleOnChange = (id) => {
+    console.log(`in progress for ${id}`);
+  }
+
   return (
     <>
     {/* <TodoContext.Provider value={{todos, setTodos}}> */}
       {/* <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
-      <DisplayToDos todos = {todos} setTodos = {setTodos} fetchToDos = {fetchToDos} />
+      <DisplayToDos 
+        todos = {todos} 
+        fetchToDos = {fetchToDos}
+        updateCompleted = {updateCompleted}
+        handleOnChange = {handleOnChange}
+      />
       {/* <Signup /> */}
       {/* <Login /> */}
       {/* <Login2 /> */}
