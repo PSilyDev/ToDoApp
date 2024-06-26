@@ -18,7 +18,7 @@ const createToDo = zod.object({
     title: zod.string(),
     description: zod.string(),
     date: zod.string().date(),
-    priority: zod.string()
+    priority: zod.string(),
 })
 
     // for put (/completed)

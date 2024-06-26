@@ -40,14 +40,26 @@ function App() {
     }  
   }
 
-  const handleOnChange = (id) => {
+  const handleOnChange = async(id) => {
     console.log(`in progress for ${id}`);
+    try{
+    
+      const response = await axios.put('http://localhost:4000/inprogress', {id})
+  
+      if(response.status === 200){
+          fetchToDos();
+          alert(response.data.msg);
+      }
+  }
+  catch(err){
+      console.log('Error while updating, error - ', err);
+  }
   }
 
   return (
     <>
     {/* <TodoContext.Provider value={{todos, setTodos}}> */}
-      {/* <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
+      <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} />
       <DisplayToDos 
         todos = {todos} 
         fetchToDos = {fetchToDos}

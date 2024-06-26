@@ -1,6 +1,6 @@
 import { Toggle } from "./toggle/Toggle";
 
-export default function ToDoCard({title, date, description, handleOnChange, updateCompleted, index, id, completed}) {
+export default function ToDoCard({title, date, description, handleOnChange, updateCompleted, id, completed}) {
     return (
       <div className="bg-slate-800 border rounded-md p-5">
         <div className="flex justify-between pb-6">
@@ -13,7 +13,7 @@ export default function ToDoCard({title, date, description, handleOnChange, upda
         <div className="flex justify-between pb-2">
             <div className="grid grid-cols-8">
                 <div>
-                    <Toggle handleOnChange={handleOnChange} index={index} /> 
+                    <Toggle handleOnChange={handleOnChange} id={id} disabled={completed}/> 
                 </div>
                 <div className="text-white pt-1">In Progress</div>
             </div>

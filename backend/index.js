@@ -117,7 +117,8 @@ app.post('/todo', async (req, res) => {
         description: createPayload.description,
         date: createPayload.date,
         priority: createPayload.priority,
-        completed: false
+        completed: false,
+        inprogress: false
     }) //Note - since we have added await, the pointer will not move to next line, if this code throws error it will be catched by global error handler and 'TODO created' will not be sent.
 
     // send back the res
@@ -159,6 +160,44 @@ app.put('/completed', async (req, res) => {
         completed: true
     })
 
+    // send back the res
+    res.status(200).json({
+        msg: "Todo marked as completed."
+    })
+})
+
+app.put('/inprogress', async(req, res) => {
+
+    const updatePayload = req.body;
+
+    // fetch the current document
+    const toDoItem = await toDo.findOne({_id: updatePayload.id});
+    if(!toDoItem){
+        res.status(411).json({
+            msg: "You sent the wrong id."
+        })
+        return;
+    }
+
+    // change the inprogress
+    const newInprogressValue = !toDoItem.inprogress;
+
+    // get data from req body
+    console.log(updatePayload);
+    // validate using zod
+    const parsedToDoId = updateValidation.safeParse(updatePayload);
+    if(!parsedToDoId.success){
+        res.status(411).json({
+            msg: "You sent the wrong inputs."
+        })
+        return;
+    }
+
+    // update the data in db
+    const response = await toDo.updateOne({_id: updatePayload.id}, {
+        inprogress: newInprogressValue
+    })
+    console.log('res: ', response);
     // send back the res
     res.status(200).json({
         msg: "Todo marked as completed."

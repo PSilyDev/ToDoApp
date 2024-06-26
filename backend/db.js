@@ -19,7 +19,8 @@ const ToDoSchema = new mongoose.Schema({
     description: String,
     date: Date,
     priority: String,
-    completed: Boolean
+    completed: Boolean,
+    inprogress: Boolean
 })
 
 // // step 3 - create model for schemas
