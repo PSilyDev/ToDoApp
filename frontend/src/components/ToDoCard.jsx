@@ -11,12 +11,15 @@ export default function ToDoCard({title, date, description, handleOnChange, upda
             {description}
         </div>
         <div className="flex justify-between pb-2">
-            <div className="grid grid-cols-8">
-                <div>
-                    <Toggle handleOnChange={handleOnChange} id={id} disabled={completed}/> 
-                </div>
-                <div className="text-white pt-1">In Progress</div>
-            </div>
+            {
+                !completed ?
+                (<div className="grid grid-cols-8">
+                    <div>
+                        <Toggle handleOnChange={handleOnChange} id={id}/>
+                    </div>
+                    <div className="text-white pt-1">In Progress</div>
+                </div>) : (<div className="grid grid-cols-8"></div>)
+            }
             <div><button className="bg-lime-500 text-white rounded font-medium px-3 py-1 disabled:opacity-25" onClick={() => updateCompleted(id)} disabled={completed}>MARK COMPLETE</button></div>
         </div>
       </div>
