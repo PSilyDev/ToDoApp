@@ -22,30 +22,51 @@ export function CreateToDo({fetchToDos}){
     }
 
     return(
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="h-screen w-screen bg-blue-950">
+
+            <form onSubmit={handleSubmit(onSubmit)} className="bg-green-500 w-full" >
 
                 {/* title */}
-                <input type="text" placeholder="title" {...register("title")}></input><br />
+                <div className="w-full bg-red-500 h-12">
+                    <input 
+                        type="text" 
+                        placeholder="title" 
+                        {...register("title")}
+                        className="w-9/12 h-full mx-auto block rounded px-3 outline-0"
+                    /><br />
+                </div>
 
                 {/* description */}
-                <input type="text" placeholder="description" {...register("description")}></input><br />
+                <div className="w-full bg-red-500">
+                    <textarea
+                        type="text" 
+                        placeholder="description" 
+                        {...register("description")}
+                        className="w-9/12 h-32 mx-auto block rounded px-3 outline-0 resize-none"
+                    /><br />
+                </div>
 
                 {/* date */}
-                <input type="date" {...register("date")}></input><br />
+                <div className="w-full bg-blue-500 h-12 ggrid grid-cols-12 gap-2 items-center">
+                    <input
+                        type="date" 
+                        {...register("date")}
+                        className="h-full mx-auto rounded px-3 outline-0 row-span-8"
+                    /><br />
 
-                {/* priority */}
-                <select {...register("priority")}>
-                    <option value="high">High</option>
-                    <option value="med">Med</option>
-                    <option value="low">Low</option>
-                </select><br />
+                    {/* priority */}
+                    <select {...register("priority")} className="h-full mx-auto rounded px-3 outline-0 row-span-4">
+                        <option value="high">High</option>
+                        <option value="med">Med</option>
+                        <option value="low">Low</option>
+                    </select><br />
+                </div>
 
                 {/* submit button */}
                 <button type="submit">Add Todo</button><br />
 
             </form>
-        </>
+        </div>
     )
 
 }

@@ -60,12 +60,12 @@ function App() {
     <>
     {/* <TodoContext.Provider value={{todos, setTodos}}> */}
       <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} />
-      <DisplayToDos 
+      {/* <DisplayToDos 
         todos = {todos} 
         fetchToDos = {fetchToDos}
         updateCompleted = {updateCompleted}
         handleOnChange = {handleOnChange}
-      />
+      /> */}
       {/* <Signup /> */}
       {/* <Login /> */}
       {/* <Login2 /> */}
