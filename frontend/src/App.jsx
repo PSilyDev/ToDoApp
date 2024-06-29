@@ -10,6 +10,7 @@ import { Login2 } from './components/Login2';
 import { Toggle } from './components/toggle/Toggle.jsx';
 import axios from 'axios';
 import ToDoCard from './components/ToDoCard.jsx';
+import { NumberField } from './components/NumberField.jsx';
 
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
   return (
     <>
     {/* <TodoContext.Provider value={{todos, setTodos}}> */}
-      <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} />
+      {/* <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
       {/* <DisplayToDos 
         todos = {todos} 
         fetchToDos = {fetchToDos}
@@ -72,6 +73,7 @@ function App() {
       {/* <Toggle /> */}
     {/* </TodoContext.Provider> */}
     {/* <ToDoCard /> */}
+    <NumberField />
     </>
   )
 }
