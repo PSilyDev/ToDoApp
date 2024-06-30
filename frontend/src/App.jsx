@@ -11,6 +11,7 @@ import { Toggle } from './components/toggle/Toggle.jsx';
 import axios from 'axios';
 import ToDoCard from './components/ToDoCard.jsx';
 import { NumberField } from './components/NumberField.jsx';
+import { MainLayout } from './components/MainLayout.jsx';
 
 
 function App() {
@@ -56,7 +57,7 @@ function App() {
       console.log('Error while updating, error - ', err);
   }
   }
-
+  console.log('inside main, todos - ', todos);
   return (
     <>
     {/* <TodoContext.Provider value={{todos, setTodos}}> */}
@@ -73,7 +74,12 @@ function App() {
       {/* <Toggle /> */}
     {/* </TodoContext.Provider> */}
     {/* <ToDoCard /> */}
-    <NumberField />
+    {/* <NumberField /> */}
+        <MainLayout todos = {todos} 
+        fetchToDos = {fetchToDos}
+        updateCompleted = {updateCompleted}
+        handleOnChange = {handleOnChange}
+        setTodos = {setTodos} />
     </>
   )
 }
