@@ -157,7 +157,7 @@ app.put('/completed', async (req, res) => {
 
     // update the data in db
     await toDo.updateOne({_id: updatePayload.id}, {
-        inprogress: false,s
+        inprogress: false,
         completed: true
     })
 

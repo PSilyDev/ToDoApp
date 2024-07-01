@@ -68,8 +68,8 @@ function App() {
         updateCompleted = {updateCompleted}
         handleOnChange = {handleOnChange}
       /> */}
-      <Signup />
-      {/* <Login /> */}
+      {/*<Signup />*/}
+      <Login />
       {/* <Login2 /> */}
       {/* <Toggle /> */}
     {/* </TodoContext.Provider> */}
