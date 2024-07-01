@@ -43,7 +43,7 @@ export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange
     }
 
     return(
-        <div className="bg-black h-full grid grid-rows-12">
+        <div className="bg-black h-full grid grid-rows-12 rounded-md">
             <div className="row-start-2 row-span-2 w-full h-full">
                 <div className="flex justify-between w-7/12 mx-auto h-full py-0.5">
                     <NumberField count={progressCount} color="orange"/>

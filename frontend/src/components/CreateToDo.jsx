@@ -24,7 +24,7 @@ export function CreateToDo({fetchToDos}){
     }
 
     return(
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-slate-800 grid grid-rows-12 gap-4">
+        <form onSubmit={handleSubmit(onSubmit)} className= "grid grid-rows-12 gap-4">
             
             <div className="row-start-2 row-span-2 justify-self-center">
                 <Avatar name="Prakhar Srivastava" round={true} className="place-content-end"/>

@@ -69,17 +69,17 @@ function App() {
         handleOnChange = {handleOnChange}
       /> */}
       {/*<Signup />*/}
-      <Login />
+      {/* <Login /> */}
       {/* <Login2 /> */}
       {/* <Toggle /> */}
     {/* </TodoContext.Provider> */}
     {/* <ToDoCard /> */}
     {/* <NumberField /> */}
-        {/* <MainLayout todos = {todos} 
+        <MainLayout todos = {todos} 
         fetchToDos = {fetchToDos}
         updateCompleted = {updateCompleted}
         handleOnChange = {handleOnChange}
-        setTodos = {setTodos} /> */}
+        setTodos = {setTodos} />
     </>
   )
 }
