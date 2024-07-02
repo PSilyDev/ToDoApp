@@ -12,6 +12,7 @@ import axios from 'axios';
 import ToDoCard from './components/ToDoCard.jsx';
 import { NumberField } from './components/NumberField.jsx';
 import { MainLayout } from './components/MainLayout.jsx';
+import { Route, Routes } from 'react-router-dom';
 
 
 function App() {
@@ -59,7 +60,27 @@ function App() {
   }
   console.log('inside main, todos - ', todos);
   return (
-    <>
+    <div>
+      <Routes>
+        
+        <Route path='/' element={ 
+          <MainLayout 
+            todos = {todos} 
+            fetchToDos = {fetchToDos}
+            updateCompleted = {updateCompleted}
+            handleOnChange = {handleOnChange}
+            setTodos = {setTodos} 
+        />}></Route>
+
+        <Route path='/signup' element={
+          <Signup />
+        }></Route>
+
+        <Route path='/login' element={
+          <Login />
+        }></Route>
+
+      </Routes>
     {/* <TodoContext.Provider value={{todos, setTodos}}> */}
       {/* <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
       {/* <DisplayToDos 
@@ -75,12 +96,12 @@ function App() {
     {/* </TodoContext.Provider> */}
     {/* <ToDoCard /> */}
     {/* <NumberField /> */}
-        <MainLayout todos = {todos} 
+        {/* <MainLayout todos = {todos} 
         fetchToDos = {fetchToDos}
         updateCompleted = {updateCompleted}
         handleOnChange = {handleOnChange}
-        setTodos = {setTodos} />
-    </>
+        setTodos = {setTodos} /> */}
+    </div>
   )
 }
 
