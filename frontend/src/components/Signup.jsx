@@ -18,11 +18,12 @@ export function Signup(){
     }
 
     return(
-        <div className="bg-black">
+        <div className="grid grid-cols-12 bg-black">
+        <div className="col-span-1 mt-2">
             <Link to="/" className="m-4">
                 <button type="button" class="w-24 h-10 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ToDos</button>
             </Link>
-        <div className="bg-black w-screen h-screen flex justify-center items-center">
+        <div className="col-span-11 bg-black w-screen h-screen flex justify-center items-center">
 
 
             <form onSubmit={handleSubmit(onSubmit)} className="bg-slate-800 w-2/6 h-3/4 rounded-md flex flex-col shadow-2xl shadow-gray-800">
@@ -62,6 +63,7 @@ export function Signup(){
                 <div className="text-blue-500 text-md mx-auto mt-3"><a href="/signin">Already have an account?</a></div>
             </form>
         </div>
+    </div>
     </div>
     );
 }
