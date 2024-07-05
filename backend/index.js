@@ -78,10 +78,15 @@ app.post('/signin', async(req, res) => {
             // create jsonwebtokens
             const signedToken = jwt.sign({username: signinPayload.username}, process.env.SECRET_KEY);
 
+            
             // send back the response
-            res.json({
+            res.status(200).json({
                 msg: "Signed in successfull",
-                token: signedToken
+                userInfo: {
+                    username: isPresent.username, 
+                    userId: isPresent._id,
+                    token: signedToken
+                }
             })
         }
         else{

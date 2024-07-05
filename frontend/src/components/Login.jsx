@@ -1,18 +1,28 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
 
 export function Login(){
+
+    const { setUserData, setLoggedIn } = useContext(LoginContext);
+
     const {register, handleSubmit} = useForm();
 
     const onSubmit = async(data) => {
         try{
             const response = await axios.post('http://localhost:4000/signin', data);
             console.log(response.data);
-            alert(response.data.msg);
-
-            // store the token in the session storage
-            sessionStorage.setItem('token', response.data.token);
+            if(response.status === 200){
+                alert(response.data.msg);
+                // update context
+                setUserData({...response.data.userInfo})
+                // store the token in the session storage
+                sessionStorage.setItem('token', response.data.userInfo.token);
+                // set Logged In to true
+                setLoggedIn(true);
+            }
         }
         catch(err){
             console.log(err);

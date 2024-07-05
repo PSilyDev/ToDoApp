@@ -13,94 +13,86 @@ import ToDoCard from './components/ToDoCard.jsx';
 import { NumberField } from './components/NumberField.jsx';
 import { MainLayout } from './components/MainLayout.jsx';
 import { Route, Routes } from 'react-router-dom';
+import { LoginContext } from './context/LoginContext.js';
 
 
 function App() {
   const [todos, setTodos] = useState([]);
-  
-  const fetchToDos = async() => {
-    try{
+
+  const [userData, setUserData] = useState();
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  console.warn('inside App. userData - ', userData);
+  console.warn('inside App. loggedIn - ', loggedIn);
+
+  const fetchToDos = async () => {
+    try {
       const response = await axios.get("http://localhost:4000/todos");
       setTodos(response.data.payload || [])
     }
-    catch(err){
+    catch (err) {
       console.log('Error while fetching, error - ', err);
     }
   }
 
-  const updateCompleted = async(id) => {
-    try{
-    
-        const response = await axios.put('http://localhost:4000/completed', {id})
-    
-        if(response.status === 200){
-            fetchToDos();
-            alert(response.data.msg);
-        }
+  const updateCompleted = async (id) => {
+    try {
+
+      const response = await axios.put('http://localhost:4000/completed', { id })
+
+      if (response.status === 200) {
+        fetchToDos();
+        alert(response.data.msg);
+      }
     }
-    catch(err){
-        console.log('Error while updating, error - ', err);
-    }  
+    catch (err) {
+      console.log('Error while updating, error - ', err);
+    }
   }
 
-  const handleOnChange = async(id) => {
+  const handleOnChange = async (id) => {
     console.log(`in progress for ${id}`);
-    try{
-    
-      const response = await axios.put('http://localhost:4000/inprogress', {id})
-  
-      if(response.status === 200){
-          fetchToDos();
-          alert(response.data.msg);
+    try {
+
+      const response = await axios.put('http://localhost:4000/inprogress', { id })
+
+      if (response.status === 200) {
+        fetchToDos();
+        alert(response.data.msg);
       }
-  }
-  catch(err){
+    }
+    catch (err) {
       console.log('Error while updating, error - ', err);
-  }
+    }
   }
   console.log('inside main, todos - ', todos);
   return (
     <div>
-      <Routes>
+      <LoginContext.Provider value={{ userData, setUserData, setLoggedIn }}>
         
-        <Route path='/' element={ 
-          <MainLayout 
-            todos = {todos} 
-            fetchToDos = {fetchToDos}
-            updateCompleted = {updateCompleted}
-            handleOnChange = {handleOnChange}
-            setTodos = {setTodos} 
-        />}></Route>
+        <Routes>
 
-        <Route path='/signup' element={
-          <Signup />
-        }></Route>
+          <Route path='/' element={
+            <MainLayout
+              todos={todos}
+              fetchToDos={fetchToDos}
+              updateCompleted={updateCompleted}
+              handleOnChange={handleOnChange}
+              setTodos={setTodos}
+            />}></Route>
 
-        <Route path='/login' element={
-          <Login />
-        }></Route>
+          <Route path='/signup' element={
+            <Signup />
+          }></Route>
 
-      </Routes>
-    {/* <TodoContext.Provider value={{todos, setTodos}}> */}
-      {/* <CreateToDo setTodos = {setTodos} fetchToDos = {fetchToDos} /> */}
-      {/* <DisplayToDos 
-        todos = {todos} 
-        fetchToDos = {fetchToDos}
-        updateCompleted = {updateCompleted}
-        handleOnChange = {handleOnChange}
-      /> */}
-      {/*<Signup />*/}
-      {/* <Login /> */}
-      {/* <Login2 /> */}
-      {/* <Toggle /> */}
-    {/* </TodoContext.Provider> */}
-    {/* <ToDoCard /> */}
-    {/* <NumberField /> */}
-        {/* <MainLayout todos = {todos} 
-        fetchToDos = {fetchToDos}
-        updateCompleted = {updateCompleted}
-        handleOnChange = {handleOnChange}
-        setTodos = {setTodos} /> */}
+          <Route path='/login' element={
+            <Login />
+          }></Route>
+
+        </Routes>
+
+      </LoginContext.Provider>
     </div>
   )
 }
