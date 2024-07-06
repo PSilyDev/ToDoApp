@@ -1,8 +1,15 @@
 import { DisplayToDos } from "./DisplayToDos";
 import { CreateToDo } from "./CreateToDo";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
+import { LandingPage } from "./LandingPage";
 
 export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, setTodos}) => {
+
+    const {loggedIn} = useContext(LoginContext);
+
+    console.log('Main Layput, logged In - ', loggedIn);
 
     return(
         <div className="w-screen h-screen grid grid-rows-12 bg-gradient-to-r from-black via-gray-900 to-black">
@@ -21,22 +28,28 @@ export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, 
                     </Link>
                 </div>
             </div>
-            <div className="row-span-11 grid grid-cols-6">
-                <div className="col-span-4">
-                    <DisplayToDos 
-                        todos = {todos} 
-                        fetchToDos = {fetchToDos}
-                        updateCompleted = {updateCompleted}
-                        handleOnChange = {handleOnChange}
-                    />
+            {
+                !loggedIn ? 
+
+                <LandingPage /> :
+            
+                <div className="row-span-11 grid grid-cols-6">
+                    <div className="col-span-4">
+                        <DisplayToDos 
+                            todos = {todos} 
+                            fetchToDos = {fetchToDos}
+                            updateCompleted = {updateCompleted}
+                            handleOnChange = {handleOnChange}
+                        />
+                    </div>
+                    <div className="col-span-2">
+                        <CreateToDo 
+                            setTodos = {setTodos} 
+                            fetchToDos = {fetchToDos} 
+                        />
+                    </div>
                 </div>
-                <div className="col-span-2">
-                    <CreateToDo 
-                        setTodos = {setTodos} 
-                        fetchToDos = {fetchToDos} 
-                    />
-                </div>
-            </div>
+            }
         </div>
     )
 }

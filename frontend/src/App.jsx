@@ -14,6 +14,7 @@ import { NumberField } from './components/NumberField.jsx';
 import { MainLayout } from './components/MainLayout.jsx';
 import { Route, Routes } from 'react-router-dom';
 import { LoginContext } from './context/LoginContext.js';
+import { LandingPage } from './components/LandingPage.jsx';
 
 
 function App() {
@@ -69,7 +70,7 @@ function App() {
   console.log('inside main, todos - ', todos);
   return (
     <div>
-      <LoginContext.Provider value={{ userData, setUserData, setLoggedIn }}>
+      <LoginContext.Provider value={{ userData, setUserData, loggedIn, setLoggedIn }}>
         
         <Routes>
 
@@ -93,6 +94,7 @@ function App() {
         </Routes>
 
       </LoginContext.Provider>
+      {/* <LandingPage /> */}
     </div>
   )
 }
