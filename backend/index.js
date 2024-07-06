@@ -118,6 +118,7 @@ app.post('/todo', async (req, res) => {
     console.log(createPayload);
     // store in db
     await toDo.create({
+        userId: createPayload.userId,
         title: createPayload.title,
         description: createPayload.description,
         date: createPayload.date,

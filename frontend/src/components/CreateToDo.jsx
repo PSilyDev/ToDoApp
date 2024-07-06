@@ -1,14 +1,20 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Avatar from "react-avatar";
+import { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
 
 
 export function CreateToDo({fetchToDos}){
+
+    const {userData} = useContext(LoginContext);
 
     const { register, handleSubmit } = useForm();
 
     const onSubmit = async(data) => {        
         try{
+            data = {...data, userId: userData.userId};
+            console.log('CreateToDo, data passed - ', data);
             const response = await axios.post('http://localhost:4000/todo', data);
             console.log(response.data);
             if(response.status === 201){
@@ -27,12 +33,12 @@ export function CreateToDo({fetchToDos}){
         <form onSubmit={handleSubmit(onSubmit)} className= "grid grid-rows-12 gap-4">
             
             <div className="row-start-2 row-span-2 justify-self-center">
-                <Avatar name="Prakhar Srivastava" round={true} className="place-content-end"/>
+                <Avatar name={`${userData.username[0]} ${userData.username[1]}`} round={true} className="place-content-end"/>
             </div>
 
             <div className="row-start-4 row-span-2 justify-self-center">
                 <p className="text-center text-xl text-white font-sans font-medium tracking-normal">
-                    Welcome, Prakhar
+                    Welcome, {userData.username}
                 </p>
                 <p className="mt-3 text-center text-lg text-white font-sans font-normal tracking-wider">
                     This is your personal tasks manager
