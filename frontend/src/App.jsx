@@ -29,7 +29,7 @@ function App() {
 
   const fetchToDos = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/todos");
+      const response = await axios.post("http://localhost:4000/todos", { userId: userData.userId });
       setTodos(response.data.payload || [])
     }
     catch (err) {
@@ -69,8 +69,8 @@ function App() {
   }
   console.log('inside main, todos - ', todos);
   return (
-    <div>
-      <LoginContext.Provider value={{ userData, setUserData, loggedIn, setLoggedIn }}>
+    <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
+      <LoginContext.Provider value={{ userData, setUserData, loggedIn, setLoggedIn, todos, setTodos }}>
         
         <Routes>
 
@@ -94,7 +94,6 @@ function App() {
         </Routes>
 
       </LoginContext.Provider>
-      {/* <LandingPage /> */}
     </div>
   )
 }

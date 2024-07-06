@@ -9,7 +9,7 @@ export function Login(){
 
     const navigate = useNavigate();
 
-    const { setUserData, setLoggedIn } = useContext(LoginContext);
+    const { setUserData, setLoggedIn, setTodos} = useContext(LoginContext);
 
     const {register, handleSubmit} = useForm();
 
@@ -25,6 +25,8 @@ export function Login(){
                 sessionStorage.setItem('token', response.data.userInfo.token);
                 // set Logged In to true
                 setLoggedIn(true);
+                // empty the previous stored todos
+                setTodos([]);
                 // navigate to main layout
                 navigate("/");
             }
@@ -35,7 +37,7 @@ export function Login(){
         }
     }
     return(
-        <div className="grid grid-cols-12 bg-black">
+        <div className="fixed grid grid-cols-12 bg-black">
 
             <div className="col-span-1 mt-2">
             
@@ -64,7 +66,7 @@ export function Login(){
                             className="w-9/12 h-12 mx-auto px-3 rounded outline-0 mt-4 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700"
                         >Login</button>
 
-                        <div className="text-blue-500 text-md mx-auto mt-3"><a href="/signin">Don't have an account?</a></div>
+                        <div className="text-blue-500 text-md mx-auto mt-3"><a href="/signup">Don't have an account?</a></div>
 
                     </form>
                 </div>

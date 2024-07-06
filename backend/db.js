@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
 })
 
 const ToDoSchema = new mongoose.Schema({
+    userId: String,
     title: String,
     description: String,
     date: Date,

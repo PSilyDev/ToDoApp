@@ -20,12 +20,14 @@ export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, 
         sessionStorage.removeItem('token');
         // set Logged In to false
         setLoggedIn(false);
+        // empty the todos stored
+        setTodos([]);
         // navigate to main layout
         navigate("/");
     }
 
     return(
-        <div className="w-screen h-screen grid grid-rows-12 bg-gradient-to-r from-black via-gray-900 to-black">
+        <div className="fixed w-screen h-screen grid grid-rows-12 bg-gradient-to-r from-black via-gray-900 to-black">
             <div className="row-span-1 flex justify-between">
                 <div className="basis-1/3 flex justify-start">
                     <Link to="/" className="ml-4 my-auto">

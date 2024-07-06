@@ -9,6 +9,7 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv');
+const mongoose = require('mongoose');
 
 
 
@@ -68,7 +69,7 @@ app.post('/signin', async(req, res) => {
 
     // authenticate credentials
     isPresent = await user.findOne({username: signinPayload.username});
-    console.log(isPresent);
+    // console.log(isPresent);
     if(isPresent != null){
         // check for password
         isAuthenticated = await bcrypt.compare(signinPayload.password, isPresent.password);
@@ -115,7 +116,6 @@ app.post('/todo', async (req, res) => {
         })
         return;
     }
-    console.log(createPayload);
     // store in db
     await toDo.create({
         userId: createPayload.userId,
@@ -133,11 +133,17 @@ app.post('/todo', async (req, res) => {
     })
 })
 
-app.get('/todos', async(req, res) => {
+// get all the todos
+app.post('/todos', async(req, res) => {
+
+    // get the userId from the req
+    const getPayload = req.body;
     
     // get data from db
-    const todos = await toDo.find();
+    const todos = await toDo.find({userId: getPayload.userId});
+    // const todos = await toDo.find({userId: getPayload.userId});
 
+    console.log(todos);
     // send back the res
     res.json({
         msg: "All stored todos",
@@ -151,7 +157,7 @@ app.put('/completed', async (req, res) => {
     
     // get data from req
     const updatePayload = req.body;
-    console.log(updatePayload);
+    // console.log(updatePayload);
     // validate using zod
     const parsedToDoId = updateValidation.safeParse(updatePayload);
     if(!parsedToDoId.success){
@@ -176,6 +182,7 @@ app.put('/completed', async (req, res) => {
 app.put('/inprogress', async(req, res) => {
 
     const updatePayload = req.body;
+    // console.log('updatePayload - ', updatePayload);
 
     // fetch the current document
     const toDoItem = await toDo.findOne({_id: updatePayload.id});
@@ -190,7 +197,7 @@ app.put('/inprogress', async(req, res) => {
     const newInprogressValue = !toDoItem.inprogress;
 
     // get data from req body
-    console.log(updatePayload);
+    // console.log(updatePayload);
     // validate using zod
     const parsedToDoId = updateValidation.safeParse(updatePayload);
     if(!parsedToDoId.success){
@@ -204,7 +211,7 @@ app.put('/inprogress', async(req, res) => {
     const response = await toDo.updateOne({_id: updatePayload.id}, {
         inprogress: newInprogressValue
     })
-    console.log('res: ', response);
+    // console.log('res: ', response);
     // send back the res
     res.status(200).json({
         msg: "Todo marked as completed."
@@ -214,7 +221,7 @@ app.put('/inprogress', async(req, res) => {
 
 // step 4 - add error handling middleware
 app.use((err, req, res, next) => {
-    console.log(err.stack);
+    // console.log(err.stack);
     res.status(500).send('Something broke');
 })
 
