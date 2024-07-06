@@ -5,11 +5,24 @@ import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 import { LandingPage } from "./LandingPage";
 
+
 export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, setTodos}) => {
 
-    const {loggedIn} = useContext(LoginContext);
+    const {loggedIn, setUserData, setLoggedIn} = useContext(LoginContext);
 
     console.log('Main Layput, logged In - ', loggedIn);
+
+    const handleLogout = () => {
+        alert("logout successfull!");
+        // update context
+        setUserData({})
+        // remove the stored token
+        sessionStorage.removeItem('token');
+        // set Logged In to false
+        setLoggedIn(false);
+        // navigate to main layout
+        navigate("/");
+    }
 
     return(
         <div className="w-screen h-screen grid grid-rows-12 bg-gradient-to-r from-black via-gray-900 to-black">
@@ -20,12 +33,24 @@ export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, 
                     </Link>
                 </div>
                 <div className="basis-2/3 flex justify-end">
-                    <Link to="/login" className="mr-6 my-auto">
-                        <button type="button" class="w-24 h-10 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Login</button>
-                    </Link>
-                    <Link to="/signup" className="mr-6 my-auto">
-                        <button type="button" class="w-24 h-10 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Signup</button>
-                    </Link>
+                {
+                    loggedIn ? 
+
+                    <div className="mr-6 my-auto">
+                        <button type="button" class="w-24 h-10 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" onClick={handleLogout}>Logout</button>
+                    </div>
+                    :
+                    (
+                    <>
+                        <Link to="/login" className="mr-6 my-auto">
+                            <button type="button" class="w-24 h-10 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Login</button>
+                        </Link>
+                        <Link to="/signup" className="mr-6 my-auto">
+                            <button type="button" class="w-24 h-10 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Signup</button>
+                        </Link>
+                    </>
+                    )
+                }
                 </div>
             </div>
             {

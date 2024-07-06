@@ -3,8 +3,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 export function Login(){
+
+    const navigate = useNavigate();
 
     const { setUserData, setLoggedIn } = useContext(LoginContext);
 
@@ -22,6 +25,8 @@ export function Login(){
                 sessionStorage.setItem('token', response.data.userInfo.token);
                 // set Logged In to true
                 setLoggedIn(true);
+                // navigate to main layout
+                navigate("/");
             }
         }
         catch(err){
