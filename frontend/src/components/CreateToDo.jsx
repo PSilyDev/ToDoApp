@@ -30,43 +30,41 @@ export function CreateToDo({fetchToDos}){
     }
 
     return(
-        <form onSubmit={handleSubmit(onSubmit)} className= "grid grid-rows-12 gap-4">
+        <form onSubmit={handleSubmit(onSubmit)} className= "flex flex-col justify-center items-center">
             
-            <div className="row-start-2 row-span-2 justify-self-center">
-                <Avatar name={`${userData.username[0]} ${userData.username[1]}`} round={true} className="place-content-end"/>
+            <div className="size-full flex justify-center items-center mt-20">
+                <Avatar name={`${userData.username[0]} ${userData.username[1]}`} round={true} size="130" className=""/>
             </div>
 
-            <div className="row-start-4 row-span-2 justify-self-center">
-                <p className="text-center text-xl text-white font-sans font-medium tracking-normal">
+            <div className="w-9/12 mt-8">
+                <p className="text-center text-2xl text-white font-sans font-medium tracking-normal">
                     Welcome, {userData.username}
                 </p>
-                <p className="mt-3 text-center text-lg text-white font-sans font-normal tracking-wider">
+                <p className="mt-4 text-center text-xl text-white font-sans font-normal tracking-wider">
                     This is your personal tasks manager
                 </p>
             </div>
             
-            <div className="w-9/12 row-start-6 justify-self-center">
+            <div className="w-9/12 h-14 mt-6">
                 {/* title */}
                 <input 
                     type="text" 
                     placeholder="Task Title" 
                     {...register("title")}
-                    className="w-full h-full rounded px-3 outline-0"
+                    className="w-full h-full rounded px-3 outline-0 mt-4"
                 /><br />
-            </div>
             
-            <div className="w-9/12 row-start-7 row-span-2 justify-self-center">
+            
                 {/* description */}
                 <textarea
                     type="text" 
                     placeholder="Description" 
                     {...register("description")}
-                    className="w-full h-full rounded px-3 py-3 outline-0 resize-none"
+                    className="w-full h-full rounded px-3 py-3 outline-0 resize-none mt-4"
                 /><br />
-            </div>
+           
             
-            <div className="w-9/12 row-start-9 justify-self-center">
-                <div className="w-full h-full flex justify-between">
+                <div className="w-full h-full flex justify-between mt-3">
 
                     {/* date */}
                     <div className="h-full basis-3/5">
@@ -88,16 +86,13 @@ export function CreateToDo({fetchToDos}){
                         </select><br />
                     </div>
                 </div>
-            </div>
             
-            <div className="w-9/12 row-start-10 justify-self-center">
-                <button type="submit" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 w-full h-full rounded px-3 outline-0"
+                <button type="submit" className="mt-8 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 w-full h-full rounded px-3 outline-0"
                 >
                     Add Todo
                 </button><br />
-            </div>
 
-
+        </div>
         </form>
     )
 }

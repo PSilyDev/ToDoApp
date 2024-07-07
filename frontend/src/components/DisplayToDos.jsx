@@ -53,9 +53,9 @@ export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange
 
                 :
                 <>
-                    <div className="row-start-2 row-span-2 w-full h-full">
+                    <div className="row-start-2 row-span-3 w-full h-full">
                         <div className="flex justify-between w-7/12 mx-auto h-full py-0.5">
-                            <div className="flex flex-col justify-center items-center">
+                            <div className="flex flex-col justify-center items-center w-32">
                                 <NumberField count={progressCount} color="orange"/>
                                 <p className="mt-3 text-white text-xl font-medium">In Progress</p>
                             </div>
@@ -70,7 +70,7 @@ export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange
                         </div>
                         
                     </div>
-                    <div className="row-start-4 row-span-10">
+                    <div className="row-start-5 row-span-10">
                         <div className="w-9/12 mx-auto h-full mt-10">
                             {
                                 todos?.map((todo, index) => {

@@ -9,7 +9,7 @@ export const NumberField = ({count, color}) => {
     const borderColor = colors[color] || 'bg-gray-500';
 
     return(
-        <div className={`size-24 flex items-center justify-center border-8 ${borderColor} rounded-full`}>
+        <div className={`size-28 flex items-center justify-center border-8 ${borderColor} rounded-full`}>
             <div className="text-4xl text-white font-medium">{count}</div>
         </div>
     );
