@@ -21,8 +21,9 @@ export function Login(){
                 alert(response.data.msg);
                 // update context
                 setUserData({...response.data.userInfo})
-                // store the token in the session storage
-                sessionStorage.setItem('token', response.data.userInfo.token);
+                // store the token, userInfo in the session storage
+                // sessionStorage.setItem('token', response.data.userInfo.token);
+                sessionStorage.setItem('userInfo', JSON.stringify(response.data.userInfo));
                 // set Logged In to true
                 setLoggedIn(true);
                 // empty the previous stored todos

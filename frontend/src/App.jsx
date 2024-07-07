@@ -15,17 +15,47 @@ import { MainLayout } from './components/MainLayout.jsx';
 import { Route, Routes } from 'react-router-dom';
 import { LoginContext } from './context/LoginContext.js';
 import { LandingPage } from './components/LandingPage.jsx';
+import { jwtDecode } from 'jwt-decode';
 
 
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState([]);
 
   const [loggedIn, setLoggedIn] = useState(false);
 
   console.warn('inside App. userData - ', userData);
-  console.warn('inside App. loggedIn - ', loggedIn);
+  // console.warn('inside App. loggedIn - ', loggedIn);
+
+  useEffect(() => { // refresh logic - reinstate userData
+
+    // if userData is empty but userInfo obj present in session storage(stored during login) - it means the page is refreshed
+    if(Object.keys(userData)?.length === 0 && sessionStorage.getItem('userInfo') !== null){
+      // step 1 - authenticate the token
+      const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+
+      if(!userInfo.token){
+        console.log('tone not found!')
+      }
+      else{
+        try{
+          // decode the token
+          const decodedToken = jwtDecode(userInfo.token);
+
+          if(decodedToken.username === userInfo.username){
+            console.log('refresheddddddddddddddddd');
+            setUserData(userInfo);
+            // fetchToDos();
+            setLoggedIn(true);
+          }
+        }
+        catch(err){
+          console.error(err);
+        }
+      }
+    }
+  }, [])
 
   const fetchToDos = async () => {
     try {

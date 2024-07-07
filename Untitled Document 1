@@ -1,0 +1,24 @@
+1. signup -as it is
+2. create context in app, 
+	define userInfo, isLoggedIn state,
+		and provide to all routes
+3. login - 
+	we get token, store token in session storage
+		update the userInfo, isLoggedIn states.
+			also delete data stored in any previous state
+4. logout -
+	clear the userInfo, isLoggedIn, any previous state data
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------
+include "delete" todo
+forgot password
+refresh logic
+integrate all states to context
