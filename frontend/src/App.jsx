@@ -97,10 +97,14 @@ function App() {
       console.log('Error while updating, error - ', err);
     }
   }
+
+  const handleDelete = async(id) => {
+    console.warn("id to delete - ", id);
+  }
   console.log('inside main, todos - ', todos);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
-      <LoginContext.Provider value={{ userData, setUserData, loggedIn, setLoggedIn, todos, setTodos }}>
+      <LoginContext.Provider value={{ userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete }}>
         
         <Routes>
 
