@@ -100,6 +100,13 @@ function App() {
 
   const handleDelete = async(id) => {
     console.warn("id to delete - ", id);
+
+    const response = await axios.post('http://localhost:4000/delete', { id });
+
+    if(response.status === 200){
+      fetchToDos();
+    }
+    alert(response.data.msg);
   }
   console.log('inside main, todos - ', todos);
   return (

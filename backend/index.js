@@ -218,6 +218,26 @@ app.put('/inprogress', async(req, res) => {
     })
 })
 
+app.post('/delete', async(req, res) => {
+
+    // get the data from the req
+    const deletePayload = req.body;
+
+    // delete the document
+    const deletedCount = await toDo.deleteOne({ _id: deletePayload.id })
+
+    // send back the res
+    if(deletedCount.acknowledged === true){
+        res.status(200).json({
+            msg: "Todo deleted successfully."
+        })
+    }
+    else{
+        res.status(501).json({
+            msg: "Todo can not be deleted."
+        })
+    }
+})
 
 
 // step 4 - add error handling middleware
