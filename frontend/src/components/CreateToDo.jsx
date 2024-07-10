@@ -5,35 +5,35 @@ import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 
 
-export function CreateToDo({fetchToDos}){
+export function CreateToDo({ fetchToDos }) {
 
-    const {userData} = useContext(LoginContext);
+    const { userData } = useContext(LoginContext);
 
     const { register, handleSubmit } = useForm();
 
-    const onSubmit = async(data) => {        
-        try{
-            data = {...data, userId: userData.userId};
+    const onSubmit = async (data) => {
+        try {
+            data = { ...data, userId: userData.userId };
             console.log('CreateToDo, data passed - ', data);
             const response = await axios.post('http://localhost:4000/todo', data);
             console.log(response.data);
-            if(response.status === 201){
+            if (response.status === 201) {
                 fetchToDos();
                 alert(response.data.msg);
             }
             reset();
         }
-        catch(err){
+        catch (err) {
             console.log(err);
             throw err;
         }
     }
 
-    return(
-        <form onSubmit={handleSubmit(onSubmit)} className= "flex flex-col justify-center items-center">
-            
+    return (
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col bg-red-400">
+
             <div className="size-full flex justify-center items-center mt-20">
-                <Avatar name={`${userData.username[0]} ${userData.username[1]}`} round={true} size="130" className=""/>
+                <Avatar name={`${userData.username[0]} ${userData.username[1]}`} round={true} size="130" className="" />
             </div>
 
             <div className="w-9/12 mt-8">
@@ -44,32 +44,32 @@ export function CreateToDo({fetchToDos}){
                     This is your personal tasks manager
                 </p>
             </div>
-            
+
             <div className="w-9/12 h-14 mt-6">
                 {/* title */}
-                <input 
-                    type="text" 
-                    placeholder="Task Title" 
+                <input
+                    type="text"
+                    placeholder="Task Title"
                     {...register("title")}
                     className="w-full h-full rounded px-3 outline-0 mt-4"
                 /><br />
-            
-            
+
+
                 {/* description */}
                 <textarea
-                    type="text" 
-                    placeholder="Description" 
+                    type="text"
+                    placeholder="Description"
                     {...register("description")}
                     className="w-full h-full rounded px-3 py-3 outline-0 resize-none mt-4"
                 /><br />
-           
-            
+
+
                 <div className="w-full h-full flex justify-between mt-3">
 
                     {/* date */}
                     <div className="h-full basis-3/5">
                         <input
-                            type="date" 
+                            type="date"
                             {...register("date")}
                             className="w-full h-full rounded px-3 outline-0 valid:text-black invalid:text-slate-400"
                             required
@@ -86,13 +86,13 @@ export function CreateToDo({fetchToDos}){
                         </select><br />
                     </div>
                 </div>
-            
+
                 <button type="submit" className="mt-8 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 w-full h-full rounded px-3 outline-0"
                 >
                     Add Todo
                 </button><br />
 
-        </div>
+            </div>
         </form>
     )
 }

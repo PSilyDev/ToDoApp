@@ -17,7 +17,7 @@ export default function ToDoCard({todo, date, handleOnChange, updateCompleted}) 
         <div className="flex justify-between pb-2">
             {
                 !todo.completed ?
-                (<div className="w-2/3 flex">
+                (<div className="w-1/3 flex">
                     <div>
                         <Toggle handleOnChange={handleOnChange} todo={todo} id={todo.id}/>
                     </div>

@@ -43,7 +43,7 @@ export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange
     }
 
     return(
-        <div className="bg-black h-full grid grid-rows-12 rounded-md">
+        <div className="bg-black grid grid-rows-12 rounded-md">
             {
                 todos.length === 0 ?
 
@@ -53,7 +53,7 @@ export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange
 
                 :
                 <>
-                    <div className="row-start-2 row-span-3 w-full h-full">
+                    <div className="row-span-2 w-full h-full mt-10">
                         <div className="flex justify-between w-7/12 mx-auto h-full py-0.5">
                             <div className="flex flex-col justify-center items-center w-32">
                                 <NumberField count={progressCount} color="orange"/>
@@ -70,7 +70,7 @@ export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange
                         </div>
                         
                     </div>
-                    <div className="row-start-5 row-span-10">
+                    <div className="row-start-3 row-span-10 mt-10">
                         <div className="w-9/12 mx-auto h-full mt-10">
                             {
                                 todos?.map((todo, index) => {
