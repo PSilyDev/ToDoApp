@@ -60,20 +60,23 @@ export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, 
 
                 <LandingPage /> :
             
-                <div className="row-span-11 grid grid-cols-6">
-                    <div className="bg-black col-span-4 overflow-y-auto custom-scrollbar">
-                        <DisplayToDos 
-                            todos = {todos} 
-                            fetchToDos = {fetchToDos}
-                            updateCompleted = {updateCompleted}
-                            handleOnChange = {handleOnChange}
-                        />
-                    </div>
-                    <div className="col-span-2 fixed right-0 top-0 mt-16">
-                        <CreateToDo 
-                            setTodos = {setTodos} 
-                            fetchToDos = {fetchToDos} 
-                        />
+                <div className="row-span-11 relative">
+
+                    <div className="h-full grid grid-cols-6">
+                        <div className="bg-black col-span-4 overflow-y-auto custom-scrollbar rounded">
+                            <DisplayToDos 
+                                todos = {todos} 
+                                fetchToDos = {fetchToDos}
+                                updateCompleted = {updateCompleted}
+                                handleOnChange = {handleOnChange}
+                            />
+                        </div>
+                        <div className="col-span-2">
+                            <CreateToDo 
+                                setTodos = {setTodos} 
+                                fetchToDos = {fetchToDos} 
+                            />
+                        </div>
                     </div>
                 </div>
             }

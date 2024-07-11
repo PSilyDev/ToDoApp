@@ -30,9 +30,9 @@ export function CreateToDo({ fetchToDos }) {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col bg-red-400">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center w-full">
 
-            <div className="size-full flex justify-center items-center mt-20">
+            <div className="size-full flex justify-center items-center mt-16">
                 <Avatar name={`${userData.username[0]} ${userData.username[1]}`} round={true} size="130" className="" />
             </div>
 
