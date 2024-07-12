@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 import { useNavigate } from "react-router-dom";
-
+import { enqueueSnackbar } from "notistack";
 export function Login(){
 
     const navigate = useNavigate();
@@ -18,7 +18,8 @@ export function Login(){
             const response = await axios.post('http://localhost:4000/signin', data);
             console.log(response.data);
             if(response.status === 200){
-                alert(response.data.msg);
+                // alert(response.data.msg);
+                enqueueSnackbar(response.data.msg);
                 // update context
                 setUserData({...response.data.userInfo})
                 // store the token, userInfo in the session storage
