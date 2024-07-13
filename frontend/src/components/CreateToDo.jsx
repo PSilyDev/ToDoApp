@@ -3,6 +3,7 @@ import axios from "axios";
 import Avatar from "react-avatar";
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
+import { enqueueSnackbar } from "notistack";
 
 
 export function CreateToDo({ fetchToDos }) {
@@ -14,12 +15,13 @@ export function CreateToDo({ fetchToDos }) {
     const onSubmit = async (data) => {
         try {
             data = { ...data, userId: userData.userId };
-            console.log('CreateToDo, data passed - ', data);
+            // console.log('CreateToDo, data passed - ', data);
             const response = await axios.post('http://localhost:4000/todo', data);
-            console.log(response.data);
+            // console.log(response.data);
             if (response.status === 201) {
                 fetchToDos();
-                alert(response.data.msg);
+                // alert(response.data.msg);
+                enqueueSnackbar(response.data.msg);
             }
             reset();
         }

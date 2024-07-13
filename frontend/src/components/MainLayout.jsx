@@ -1,19 +1,23 @@
 import { DisplayToDos } from "./DisplayToDos";
 import { CreateToDo } from "./CreateToDo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 import { LandingPage } from "./LandingPage";
+import { enqueueSnackbar } from "notistack";
 
 
 export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, setTodos}) => {
 
+    const navigate = useNavigate();
+
     const {loggedIn, setUserData, setLoggedIn} = useContext(LoginContext);
 
-    console.log('Main Layput, logged In - ', loggedIn);
+    // console.log('Main Layput, logged In - ', loggedIn);
 
     const handleLogout = () => {
-        alert("logout successfull!");
+        // alert("logout successfull!");
+        enqueueSnackbar("logout successfull!");
         // update context
         setUserData([])
         // remove the stored token

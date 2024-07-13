@@ -91,13 +91,13 @@ app.post('/signin', async(req, res) => {
             })
         }
         else{
-            res.json({
+            res.status(401).json({
                 msg: "Invalid password!"
             })
         }
     }
     else{
-        res.json({
+        res.status(401).json({
             msg: "Invalid username!"
         })
     }

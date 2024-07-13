@@ -16,10 +16,10 @@ export function Login(){
     const onSubmit = async(data) => {
         try{
             const response = await axios.post('http://localhost:4000/signin', data);
-            console.log(response.data);
             if(response.status === 200){
                 // alert(response.data.msg);
                 enqueueSnackbar(response.data.msg);
+                
                 // update context
                 setUserData({...response.data.userInfo})
                 // store the token, userInfo in the session storage
@@ -32,10 +32,16 @@ export function Login(){
                 // navigate to main layout
                 navigate("/");
             }
+            
         }
         catch(err){
-            console.log(err);
-            throw err;
+            if(err.response && err.response.status === 401){
+                enqueueSnackbar(err.response.data.msg);
+            }
+            else{
+                console.log(err);
+                // throw err;
+            }
         }
     }
     return(

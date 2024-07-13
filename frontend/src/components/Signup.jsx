@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { enqueueSnackbar } from "notistack";
 
 export function Signup(){
 
@@ -11,8 +12,9 @@ export function Signup(){
     const onSubmit = async(data) => {
         try{
             const response = await axios.post('http://localhost:4000/signup', data);
-            console.log(response.data);
-            alert(response.data);
+            // console.log(response.data);
+            // alert(response.data);
+            enqueueSnackbar(response.data);
             navigate('/login');
         }
         catch(err){

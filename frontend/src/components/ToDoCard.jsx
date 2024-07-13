@@ -4,7 +4,7 @@ import { LoginContext } from "../context/LoginContext";
 
 export default function ToDoCard({todo, date, handleOnChange, updateCompleted}) {
     const { handleDelete } = useContext(LoginContext);
-    console.log('inside ToDoCard, todo passed - ', todo);
+    // console.log('inside ToDoCard, todo passed - ', todo);
     return (
       <div className="bg-slate-800 rounded-md p-8 h-56">
         <div className="flex justify-between pb-8">

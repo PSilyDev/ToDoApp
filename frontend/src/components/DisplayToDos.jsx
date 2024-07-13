@@ -10,7 +10,7 @@ export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange
     const [completedCount, setCompletedCount] = useState(0);
     const [totalCount, setTotalCount] = useState(0);
 
-    console.log('progressCount - ', progressCount);
+    // console.log('progressCount - ', progressCount);
 
     useEffect(() => 
         {

@@ -16,6 +16,7 @@ import { Route, Routes } from 'react-router-dom';
 import { LoginContext } from './context/LoginContext.js';
 import { LandingPage } from './components/LandingPage.jsx';
 import { jwtDecode } from 'jwt-decode';
+import { enqueueSnackbar } from 'notistack';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  console.warn('inside App. userData - ', userData);
+  // console.warn('inside App. userData - ', userData);
   // console.warn('inside App. loggedIn - ', loggedIn);
 
   useEffect(() => { // refresh logic - reinstate userData
@@ -44,7 +45,7 @@ function App() {
           const decodedToken = jwtDecode(userInfo.token);
 
           if(decodedToken.username === userInfo.username){
-            console.log('refresheddddddddddddddddd');
+            // console.log('refresheddddddddddddddddd');
             setUserData(userInfo);
             // fetchToDos();
             setLoggedIn(true);
@@ -74,7 +75,8 @@ function App() {
 
       if (response.status === 200) {
         fetchToDos();
-        alert(response.data.msg);
+        // alert(response.data.msg);
+        enqueueSnackbar(response.data.msg);
       }
     }
     catch (err) {
@@ -83,14 +85,15 @@ function App() {
   }
 
   const handleOnChange = async (id) => {
-    console.log(`in progress for ${id}`);
+    // console.log(`in progress for ${id}`);
     try {
 
       const response = await axios.put('http://localhost:4000/inprogress', { id })
 
       if (response.status === 200) {
         fetchToDos();
-        alert(response.data.msg);
+        // alert(response.data.msg);
+        enqueueSnackbar(response.data.msg);
       }
     }
     catch (err) {
@@ -99,16 +102,17 @@ function App() {
   }
 
   const handleDelete = async(id) => {
-    console.warn("id to delete - ", id);
+    // console.warn("id to delete - ", id);
 
     const response = await axios.post('http://localhost:4000/delete', { id });
 
     if(response.status === 200){
       fetchToDos();
     }
-    alert(response.data.msg);
+    // alert(response.data.msg);
+    enqueueSnackbar(response.data.msg);
   }
-  console.log('inside main, todos - ', todos);
+  // console.log('inside main, todos - ', todos);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
       <LoginContext.Provider value={{ userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete }}>
