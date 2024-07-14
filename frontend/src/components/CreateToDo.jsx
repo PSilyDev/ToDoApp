@@ -6,9 +6,9 @@ import { LoginContext } from "../context/LoginContext";
 import { enqueueSnackbar } from "notistack";
 
 
-export function CreateToDo({ fetchToDos }) {
+export function CreateToDo() {
 
-    const { userData } = useContext(LoginContext);
+    const { userData, fetchToDos } = useContext(LoginContext);
 
     const { register, handleSubmit } = useForm();
 

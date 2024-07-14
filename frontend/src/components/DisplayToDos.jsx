@@ -1,10 +1,13 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Toggle } from "./toggle/Toggle";
 import ToDoCard from "./ToDoCard";
 import { NumberField } from "./NumberField";
+import { LoginContext } from "../context/LoginContext";
 
-export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange}){
+export function DisplayToDos(){
+
+    const {todos, fetchToDos, updateCompleted, handleOnChange} = useContext(LoginContext);
     
     const [progressCount, setProgressCount] = useState(0);
     const [completedCount, setCompletedCount] = useState(0);
@@ -78,14 +81,7 @@ export function DisplayToDos({todos, fetchToDos, updateCompleted, handleOnChange
                                         <div key={index} className="mb-6">
                                             <ToDoCard 
                                                 todo = {todo}
-                                                date={formatDateString(todo.date)} 
-                                                // title={todo.title} 
-                                                // description={todo.description} 
-                                                // id={todo._id}
-                                                // completed={todo.completed}
-
-                                                handleOnChange={handleOnChange} 
-                                                updateCompleted={updateCompleted} 
+                                                date={formatDateString(todo.date)}
                                                 index={index} 
                                             />
                                         </div>

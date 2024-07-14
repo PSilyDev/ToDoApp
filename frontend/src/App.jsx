@@ -115,18 +115,13 @@ function App() {
   // console.log('inside main, todos - ', todos);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
-      <LoginContext.Provider value={{ userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete }}>
+      <LoginContext.Provider value={{ fetchToDos, updateCompleted, handleOnChange, userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete }}>
         
         <Routes>
 
           <Route path='/' element={
             <MainLayout
-              todos={todos}
-              fetchToDos={fetchToDos}
-              updateCompleted={updateCompleted}
-              handleOnChange={handleOnChange}
-              setTodos={setTodos}
-            />}></Route>
+          />}></Route>
 
           <Route path='/signup' element={
             <Signup />

@@ -18,7 +18,9 @@
 
 
 ----------------------------------------------------------------------
-include "delete" todo
+include "delete" todo ---- done
 forgot password
-refresh logic
+refresh logic  --- done
 integrate all states to context
+date wise filter
+mobile view

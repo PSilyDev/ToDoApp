@@ -7,11 +7,11 @@ import { LandingPage } from "./LandingPage";
 import { enqueueSnackbar } from "notistack";
 
 
-export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, setTodos}) => {
+export const MainLayout = () => {
 
     const navigate = useNavigate();
 
-    const {loggedIn, setUserData, setLoggedIn} = useContext(LoginContext);
+    const {loggedIn, setUserData, setLoggedIn, todos, fetchToDos, updateCompleted, handleOnChange, setTodos} = useContext(LoginContext);
 
     // console.log('Main Layput, logged In - ', loggedIn);
 
@@ -68,18 +68,10 @@ export const MainLayout = ({todos, fetchToDos, updateCompleted, handleOnChange, 
 
                     <div className="h-full grid grid-cols-6">
                         <div className="bg-black col-span-4 overflow-y-auto custom-scrollbar rounded">
-                            <DisplayToDos 
-                                todos = {todos} 
-                                fetchToDos = {fetchToDos}
-                                updateCompleted = {updateCompleted}
-                                handleOnChange = {handleOnChange}
-                            />
+                            <DisplayToDos />
                         </div>
                         <div className="col-span-2">
-                            <CreateToDo 
-                                setTodos = {setTodos} 
-                                fetchToDos = {fetchToDos} 
-                            />
+                            <CreateToDo />
                         </div>
                     </div>
                 </div>

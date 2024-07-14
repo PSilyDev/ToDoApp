@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Toggle } from "./toggle/Toggle";
 import { LoginContext } from "../context/LoginContext";
 
-export default function ToDoCard({todo, date, handleOnChange, updateCompleted}) {
-    const { handleDelete } = useContext(LoginContext);
+export default function ToDoCard({todo, date}) {
+    const { handleDelete, handleOnChange, updateCompleted } = useContext(LoginContext);
     // console.log('inside ToDoCard, todo passed - ', todo);
     return (
       <div className="bg-slate-800 rounded-md p-8 h-56">
@@ -19,7 +19,7 @@ export default function ToDoCard({todo, date, handleOnChange, updateCompleted}) 
                 !todo.completed ?
                 (<div className="w-1/3 flex">
                     <div>
-                        <Toggle handleOnChange={handleOnChange} todo={todo} id={todo.id}/>
+                        <Toggle todo={todo} id={todo.id}/>
                     </div>
                     <div className="text-white text-lg pt-0.5 ml-2">In Progress</div>
                 </div>) : (<div className="grid grid-cols-8"></div>)
