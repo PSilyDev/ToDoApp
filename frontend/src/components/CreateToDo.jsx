@@ -10,7 +10,7 @@ export function CreateToDo() {
 
     const { userData, fetchToDos } = useContext(LoginContext);
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = async (data) => {
         try {
