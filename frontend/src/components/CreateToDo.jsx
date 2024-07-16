@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Avatar from "react-avatar";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { LoginContext } from "../context/LoginContext";
 import { enqueueSnackbar } from "notistack";
 
@@ -31,11 +31,18 @@ export function CreateToDo() {
         }
     }
 
+    const avatarName = useMemo(() => {
+        console.log("Avatar name computed");
+        return `${userData.username[0]} ${userData.username[1]}`;
+    }, [userData.username]);
+
+    console.log("CreateToDo component rendered");
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center w-full">
 
             <div className="size-full flex justify-center items-center mt-16">
-                <Avatar name={`${userData.username[0]} ${userData.username[1]}`} round={true} size="130" className="" />
+                <Avatar name={avatarName} round={true} size="130" className="" />
             </div>
 
             <div className="w-9/12 mt-8">
