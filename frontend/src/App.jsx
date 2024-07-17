@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import './App.css'
 import { useContext } from 'react';
 
@@ -6,7 +6,7 @@ import { CreateToDo } from './components/CreateToDo'
 import { DisplayToDos } from './components/DisplayToDos'
 import { Signup } from './components/Signup';
 import { Login } from './components/Login';
-import { Login2 } from './components/Login2';
+// import { Login2 } from './components/Login2';
 import { Toggle } from './components/toggle/Toggle.jsx';
 import axios from 'axios';
 import ToDoCard from './components/ToDoCard.jsx';
@@ -58,7 +58,7 @@ function App() {
     }
   }, [])
 
-  const fetchToDos = async () => {
+  const fetchToDos = useCallback(async () => {
     try {
       const response = await axios.post("http://localhost:4000/todos", { userId: userData.userId });
       setTodos(response.data.payload || [])
@@ -66,7 +66,7 @@ function App() {
     catch (err) {
       console.log('Error while fetching, error - ', err);
     }
-  }
+  }, [userData.userId]);
 
   const updateCompleted = async (id) => {
     try {
@@ -112,10 +112,26 @@ function App() {
     // alert(response.data.msg);
     enqueueSnackbar(response.data.msg);
   }
+
+  const contextValue = useMemo(() => {
+    return {
+      fetchToDos,
+      updateCompleted,
+      handleOnChange,
+      userData,
+      setUserData,
+      loggedIn,
+      setLoggedIn,
+      todos,
+      setTodos,
+      handleDelete
+    };
+  }, [fetchToDos, updateCompleted, handleOnChange, userData, loggedIn, todos, handleDelete]);
+
   // console.log('inside main, todos - ', todos);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
-      <LoginContext.Provider value={{ fetchToDos, updateCompleted, handleOnChange, userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete }}>
+      <LoginContext.Provider value={contextValue}>
         
         <Routes>
 

@@ -38,6 +38,9 @@ export function CreateToDo() {
 
     console.log("CreateToDo component rendered");
 
+    // Logging context changes
+    console.log("Context userData:", userData);
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center w-full">
 
