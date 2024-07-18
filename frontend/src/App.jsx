@@ -2,7 +2,7 @@ import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import './App.css'
 import { useContext } from 'react';
 
-import { CreateToDo } from './components/CreateToDo'
+// import { CreateToDo } from './components/CreateToDo'
 import { DisplayToDos } from './components/DisplayToDos'
 import { Signup } from './components/Signup';
 import { Login } from './components/Login';
@@ -17,7 +17,7 @@ import { LoginContext } from './context/LoginContext.js';
 import { LandingPage } from './components/LandingPage.jsx';
 import { jwtDecode } from 'jwt-decode';
 import { enqueueSnackbar } from 'notistack';
-
+import CreateToDo from './components/CreateToDo';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -58,7 +58,7 @@ function App() {
     }
   }, [])
 
-  const fetchToDos = useCallback(async () => {
+  const fetchToDos = async () => {
     try {
       const response = await axios.post("http://localhost:4000/todos", { userId: userData.userId });
       setTodos(response.data.payload || [])
@@ -66,7 +66,7 @@ function App() {
     catch (err) {
       console.log('Error while fetching, error - ', err);
     }
-  }, [userData.userId]);
+  }
 
   const updateCompleted = async (id) => {
     try {
@@ -113,25 +113,11 @@ function App() {
     enqueueSnackbar(response.data.msg);
   }
 
-  const contextValue = useMemo(() => {
-    return {
-      fetchToDos,
-      updateCompleted,
-      handleOnChange,
-      userData,
-      setUserData,
-      loggedIn,
-      setLoggedIn,
-      todos,
-      setTodos,
-      handleDelete
-    };
-  }, [fetchToDos, updateCompleted, handleOnChange, userData, loggedIn, todos, handleDelete]);
 
   // console.log('inside main, todos - ', todos);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
-      <LoginContext.Provider value={contextValue}>
+      <LoginContext.Provider value={{fetchToDos, updateCompleted, handleOnChange, userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete}}>
         
         <Routes>
 

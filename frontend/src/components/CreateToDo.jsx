@@ -1,3 +1,4 @@
+import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Avatar from "react-avatar";
@@ -6,7 +7,7 @@ import { LoginContext } from "../context/LoginContext";
 import { enqueueSnackbar } from "notistack";
 
 
-export function CreateToDo() {
+function CreateToDo() {
 
     const { userData, fetchToDos } = useContext(LoginContext);
 
@@ -108,3 +109,5 @@ export function CreateToDo() {
         </form>
     )
 }
+
+export default React.memo(CreateToDo);

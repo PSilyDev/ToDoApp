@@ -1,5 +1,5 @@
 import { DisplayToDos } from "./DisplayToDos";
-import { CreateToDo } from "./CreateToDo";
+import CreateToDo from "./CreateToDo";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
