@@ -13,6 +13,8 @@ function CreateToDo() {
 
     const { register, handleSubmit, reset } = useForm();
 
+    const today = new Date().toISOString().split('T')[0];
+
     const onSubmit = async (data) => {
         try {
             data = { ...data, userId: userData.userId };
@@ -83,9 +85,11 @@ function CreateToDo() {
                     <div className="h-full basis-3/5">
                         <input
                             type="date"
+                            id="dateInput"
                             {...register("date")}
                             className="w-full h-full rounded px-3 outline-0 valid:text-black invalid:text-slate-400"
                             required
+                            min={today}
                         /><br />
                     </div>
 
