@@ -61,7 +61,8 @@ function App() {
   const fetchToDos = async () => {
     try {
       const response = await axios.post("http://localhost:4000/todos", { userId: userData.userId });
-      setTodos(response.data.payload || [])
+      const sortedToDos = response.data.payload.sort((a, b) => new Date(a.date) - new Date(b.date));
+      setTodos(sortedToDos || [])
     }
     catch (err) {
       console.log('Error while fetching, error - ', err);
