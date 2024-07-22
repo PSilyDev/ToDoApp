@@ -32,7 +32,7 @@ export function Signup(){
                 <div className="col-span-11 w-screen h-screen flex justify-center items-center">
 
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="lg:bg-slate-800 w-2/6 h-3/5 rounded-md flex flex-col shadow-2xl shadow-gray-800 w-full max-w-lg md:w-3/5 lg:w-3/5 h-full max-h-lg md:h-3/5 lg:w-3/5 sm: bg-transparent w-4/5 shadow-none">
+                    <form onSubmit={handleSubmit(onSubmit)} className="lg:bg-slate-800 w-2/6 h-4/5 rounded-md flex flex-col shadow-2xl shadow-gray-800 w-full max-w-lg md:w-3/5 lg:w-3/5 h-full max-h-lg md:h-4/6 lg:w-4/6 sm: bg-transparent w-4/5 shadow-none">
 
                         <div className="lg:visible text-center text-2xl text-white font-sans font-medium tracking-normal mt-6 sm: invisible">Create a new account</div>
                         <div className="lg:visible mt-1 text-center text-lg text-slate-300 font-sans font-normal sm: invisible">
