@@ -64,13 +64,13 @@ export const MainLayout = () => {
 
                 <LandingPage /> :
             
-                <div className="row-span-11 relative">
+                <div className="row-span-11 relative h-full">
 
-                    <div className="h-full grid grid-cols-6">
-                        <div className="bg-black col-span-4 overflow-y-auto custom-scrollbar rounded">
+                    <div className="h-full grid sm:flex sm:flex-col lg:grid lg:grid-cols-6">
+                        <div className="bg-black lg:col-span-4 overflow-y-auto custom-scrollbar rounded">
                             <DisplayToDos />
                         </div>
-                        <div className="col-span-2">
+                        <div className="lg:col-span-2 sm:top">
                             <CreateToDo />
                         </div>
                     </div>
