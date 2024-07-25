@@ -46,7 +46,7 @@ export function DisplayToDos(){
     }
 
     return(
-        <div className="bg-black grid grid-rows-12 rounded-md">
+        <div className="lg:bg-black grid grid-rows-12 rounded-md">
             {
                 todos.length === 0 ?
 
@@ -56,7 +56,7 @@ export function DisplayToDos(){
 
                 :
                 <>
-                    <div className="lg:visible row-span-2 w-full h-full mt-10 sm: invisible">
+                    <div className="lg:visible row-span-2 w-full h-full mt-10 sm: hidden">
                         <div className="flex justify-between w-7/12 mx-auto h-full py-0.5">
                             <div className="flex flex-col justify-center items-center w-32">
                                 <NumberField count={progressCount} color="orange"/>
@@ -73,8 +73,8 @@ export function DisplayToDos(){
                         </div>
                         
                     </div>
-                    <div className="row-start-3 row-span-10 mt-10">
-                        <div className="w-9/12 mx-auto h-full mt-10">
+                    <div className="row-start-3 row-span-10 mg-10 sm: row-start-1">
+                        <div className="w-9/12 mx-auto h-full mg-10">
                             {
                                 todos?.map((todo, index) => {
                                     return(

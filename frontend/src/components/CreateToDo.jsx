@@ -108,6 +108,10 @@ function CreateToDo() {
                 >
                     Add Todo
                 </button><br />
+                
+                <div className="w-full h-full flex justify-center mt-32 lg:invisible">
+                    <p className="text-4xl font-medium text-slate-700">Todos</p>
+                </div>
 
             </div>
         </form>

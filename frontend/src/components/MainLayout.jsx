@@ -66,12 +66,12 @@ export const MainLayout = () => {
             
                 <div className="row-span-11 relative h-full">
 
-                    <div className="h-full grid sm:flex sm:flex-col lg:grid lg:grid-cols-6">
-                        <div className="bg-black lg:col-span-4 overflow-y-auto custom-scrollbar rounded">
-                            <DisplayToDos />
-                        </div>
-                        <div className="lg:col-span-2 sm:top">
+                    <div className="h-full grid flex flex-col lg:grid lg:grid-cols-6 overflow-y-auto">
+                        <div className="lg:col-span-2 lg:overflow-y-auto flex-grow min-h-svh">
                             <CreateToDo />
+                        </div>
+                        <div className="lg:bg-black lg:col-span-4 lg:overflow-y-auto custom-scrollbar rounded">
+                            <DisplayToDos />
                         </div>
                     </div>
                 </div>
