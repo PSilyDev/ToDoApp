@@ -27,7 +27,7 @@ export function Signup(){
             <div className="col-span-1 mt-2">
 
                 <Link to="/" className="m-4">
-                    <button type="button" className="mt-2 w-24 h-10 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Checklist</button>
+                    <button type="button" className="mt-3 w-24 h-10 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:mt-2">Checklist</button>
                 </Link>
                 <div className="col-span-11 w-screen h-screen flex justify-center items-center">
 
