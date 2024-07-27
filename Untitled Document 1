@@ -22,7 +22,7 @@ include "delete" todo 				---- done
 refresh logic  						---- done
 integrate all states to context		---- done
 reset form field in CreateToDo		---- done
+mobile view							---- done
 useMemo integrate
 date wise filter
 forgot password
-mobile view
