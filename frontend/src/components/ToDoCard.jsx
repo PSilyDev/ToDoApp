@@ -6,7 +6,7 @@ export default function ToDoCard({todo, date}) {
     const { handleDelete, handleOnChange, updateCompleted } = useContext(LoginContext);
     // console.log('inside ToDoCard, todo passed - ', todo);
     return (
-      <div className="bg-slate-800 rounded-md p-8 h-56">
+      <div className="bg-slate-800 rounded-md p-8">
         <div className="flex justify-between pb-8">
             <div className="text-white text-2xl font-semibold">{todo.title}</div>
             <div className="bg-black text-white border text-base font-light rounded-full px-3 py-1 lg:text-xl">{date}</div>

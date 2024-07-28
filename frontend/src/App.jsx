@@ -114,6 +114,7 @@ function App() {
     enqueueSnackbar(response.data.msg);
   }
 
+  console.log('todos --------------', todos);
 
   // console.log('inside main, todos - ', todos);
   return (

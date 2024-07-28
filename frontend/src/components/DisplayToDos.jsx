@@ -7,7 +7,7 @@ import { LoginContext } from "../context/LoginContext";
 
 export function DisplayToDos(){
 
-    const {todos, fetchToDos, updateCompleted, handleOnChange} = useContext(LoginContext);
+    const {todos, fetchToDos, updateCompleted, handleOnChange, setTodos} = useContext(LoginContext);
     
     const [progressCount, setProgressCount] = useState(0);
     const [completedCount, setCompletedCount] = useState(0);
@@ -17,13 +17,29 @@ export function DisplayToDos(){
 
     useEffect(() => 
         {
-            fetchToDos();
+            fetchToDos().then(() => {
+                checkValid();
+            })
         },
         []
     )
     useEffect(() => {
         calculateProgressBar(todos);
     }, [todos])
+
+    const checkValid = () => {
+        let today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric'};
+
+        today = today.toLocaleDateString('en-US', options);
+        todos.map(todo => {
+            if (today > formatDateString(todo.date)){
+                updateCompleted(todo._id);
+            }
+        })
+       
+    }
+    
 
     const calculateProgressBar = (todos) => {
         const inprogress = todos.filter(item => item.inprogress === true);
