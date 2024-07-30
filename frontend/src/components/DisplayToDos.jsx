@@ -72,7 +72,7 @@ export function DisplayToDos(){
 
                 :
                 <>
-                    <div className="lg:visible row-span-2 w-full h-full mt-10 sm: hidden lg:block">
+                    <div className="lg:visible row-span-2 w-full h-full mt-6 lg: mb-10 sm: hidden lg:block">
                         <div className="flex justify-between w-7/12 mx-auto h-full py-0.5">
                             <div className="flex flex-col justify-center items-center w-32">
                                 <NumberField count={progressCount} color="orange"/>
