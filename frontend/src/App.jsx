@@ -18,6 +18,7 @@ import { LandingPage } from './components/LandingPage.jsx';
 import { jwtDecode } from 'jwt-decode';
 import { enqueueSnackbar } from 'notistack';
 import CreateToDo from './components/CreateToDo';
+import { Modal } from './components/modal/Modal.jsx';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -134,6 +135,11 @@ function App() {
           <Route path='/login' element={
             <Login />
           }></Route>
+
+          <Route path='/modal' element={
+            <Modal />
+          }></Route>
+
 
         </Routes>
 
