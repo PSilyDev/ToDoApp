@@ -1,6 +1,12 @@
 export const Modal = (props) => {
 
-    return(
+    const handleClick = (selected) => {
+        props.getSelected(selected);
+        props.setTrigger(false);
+                
+    }
+
+    return (props.trigger) ? (
         <div className="h-full w-full bg-transparent flex justify-center items-center">
             <div className="w-2/6 h-2/6 rounded-lg bg-slate-800 relative">
                 
@@ -10,9 +16,11 @@ export const Modal = (props) => {
 
                 <div className="text-white text-2xl text-center mt-10">Do you wish to continue?</div>
                 
-                <button type="button" disabled={true} className="absolute w-24 h-10 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center right-0 bottom-0 mb-4 mr-4">continue</button>
+                <button type="button" className="absolute w-24 h-10 text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center right-0 bottom-0 mb-4 mr-4" onClick={() => handleClick("no")}>No</button>
+
+                <button type="button" className="absolute w-24 h-10 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center right-0 bottom-0 mb-4 mr-32" onClick={() => handleClick("yes")}>Yes</button>
             </div>
-            
+           
         </div>
-    )
+    ) : "";
 }
