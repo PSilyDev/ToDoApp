@@ -27,6 +27,8 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const [trigger, setTrigger] = useState(false);
+
   // console.warn('inside App. userData - ', userData);
   // console.warn('inside App. loggedIn - ', loggedIn);
 
@@ -71,19 +73,21 @@ function App() {
   }
 
   const updateCompleted = async (id) => {
-    try {
+    setTrigger(true);
 
-      const response = await axios.put('http://localhost:4000/completed', { id })
+    // try {
 
-      if (response.status === 200) {
-        fetchToDos();
-        // alert(response.data.msg);
-        enqueueSnackbar(response.data.msg);
-      }
-    }
-    catch (err) {
-      console.log('Error while updating, error - ', err);
-    }
+    //   const response = await axios.put('http://localhost:4000/completed', { id })
+
+    //   if (response.status === 200) {
+    //     fetchToDos();
+    //     // alert(response.data.msg);
+    //     enqueueSnackbar(response.data.msg);
+    //   }
+    // }
+    // catch (err) {
+    //   console.log('Error while updating, error - ', err);
+    // }
   }
 
   const handleOnChange = async (id) => {
@@ -120,7 +124,7 @@ function App() {
   // console.log('inside main, todos - ', todos);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
-      <LoginContext.Provider value={{fetchToDos, updateCompleted, handleOnChange, userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete}}>
+      <LoginContext.Provider value={{fetchToDos, updateCompleted, handleOnChange, userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete, trigger, setTrigger}}>
         
         <Routes>
 

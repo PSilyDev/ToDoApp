@@ -4,7 +4,7 @@ import { LoginContext } from "../context/LoginContext";
 import { Modal } from "./modal/Modal";
 
 export default function ToDoCard({todo, date}) {
-    const { handleDelete, handleOnChange, updateCompleted } = useContext(LoginContext);
+    const { handleDelete, handleOnChange, updateCompleted, trigger, setTrigger } = useContext(LoginContext);
     // console.log('inside ToDoCard, todo passed - ', todo);
     return (
       <div className="bg-slate-800 rounded-md p-8">
@@ -31,10 +31,9 @@ export default function ToDoCard({todo, date}) {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-9 h-9 mr-2 lg:hidden"><path fill="#ff0000" d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm88 200l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>
                 </button>
                 
-
-                
                 <button className="bg-lime-500 text-white text-xl rounded font-medium px-3 py-1 disabled:opacity-25" onClick={() => updateCompleted(todo._id)} disabled={todo.completed}>MARK COMPLETE</button>
             </div>
+            <Modal trigger={trigger} setTrigger={setTrigger}></Modal>
         </div>
       </div>
     )
