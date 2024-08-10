@@ -148,6 +148,7 @@ function App() {
         </Routes>
 
       </LoginContext.Provider>
+      <Modal trigger={trigger} setTrigger={setTrigger}></Modal>
     </div>
   )
 }
