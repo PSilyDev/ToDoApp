@@ -29,6 +29,8 @@ function App() {
 
   const [trigger, setTrigger] = useState(false);
 
+  const [selectedOption, setSelectedOption] = useState(null);
+
   // console.warn('inside App. userData - ', userData);
   // console.warn('inside App. loggedIn - ', loggedIn);
 
@@ -121,6 +123,11 @@ function App() {
 
   console.log('todos --------------', todos);
 
+  const getSelected = (selected) => {
+    console.log('inside app, option selected - ', selected);
+    setSelectedOption(selected);
+  }
+
   // console.log('inside main, todos - ', todos);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
@@ -140,15 +147,10 @@ function App() {
             <Login />
           }></Route>
 
-          <Route path='/modal' element={
-            <Modal />
-          }></Route>
-
-
         </Routes>
 
       </LoginContext.Provider>
-      <Modal trigger={trigger} setTrigger={setTrigger}></Modal>
+      <Modal trigger={trigger} setTrigger={setTrigger} getSelected={getSelected}></Modal>
     </div>
   )
 }

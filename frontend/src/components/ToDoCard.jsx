@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Toggle } from "./toggle/Toggle";
 import { LoginContext } from "../context/LoginContext";
-import { Modal } from "./modal/Modal";
+
 
 export default function ToDoCard({todo, date}) {
-    const { handleOnChange, updateCompleted, trigger, setTrigger } = useContext(LoginContext);
+    const { updateCompleted, setTrigger } = useContext(LoginContext);
     // console.log('inside ToDoCard, todo passed - ', todo);
     const handleDeleteClick = (id) => {
         setTrigger(true);
