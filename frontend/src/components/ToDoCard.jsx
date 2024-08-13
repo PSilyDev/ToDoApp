@@ -4,9 +4,10 @@ import { LoginContext } from "../context/LoginContext";
 
 
 export default function ToDoCard({todo, date}) {
-    const { updateCompleted, setTrigger } = useContext(LoginContext);
+    const { updateCompleted, setTrigger, setDeleteId } = useContext(LoginContext);
     // console.log('inside ToDoCard, todo passed - ', todo);
     const handleDeleteClick = (id) => {
+        setDeleteId(id);
         setTrigger(true);
         // console.log('resss - ', res);
         // handleDelete(id);

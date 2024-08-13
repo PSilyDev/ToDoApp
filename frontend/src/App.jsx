@@ -29,7 +29,7 @@ function App() {
 
   const [trigger, setTrigger] = useState(false);
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
 
   // console.warn('inside App. userData - ', userData);
   // console.warn('inside App. loggedIn - ', loggedIn);
@@ -124,14 +124,16 @@ function App() {
   console.log('todos --------------', todos);
 
   const getSelected = (selected) => {
-    console.log('inside app, option selected - ', selected);
-    setSelectedOption(selected);
+    
+    if(selected === 'yes'){
+      handleDelete(deleteId);
+    }
   }
 
   // console.log('inside main, todos - ', todos);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-black via-gray-900 to-black">
-      <LoginContext.Provider value={{fetchToDos, updateCompleted, handleOnChange, userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete, trigger, setTrigger}}>
+      <LoginContext.Provider value={{fetchToDos, updateCompleted, handleOnChange, userData, setUserData, loggedIn, setLoggedIn, todos, setTodos, handleDelete, trigger, setTrigger, setDeleteId}}>
         
         <Routes>
 
