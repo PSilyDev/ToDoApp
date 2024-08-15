@@ -7,13 +7,12 @@ import { LoginContext } from "../context/LoginContext";
 
 export function DisplayToDos(){
 
-    const {todos, fetchToDos, updateCompleted, handleOnChange, setTodos} = useContext(LoginContext);
+    const {todos, fetchToDos, updateCompleted} = useContext(LoginContext);
     
     const [progressCount, setProgressCount] = useState(0);
     const [completedCount, setCompletedCount] = useState(0);
     const [totalCount, setTotalCount] = useState(0);
 
-    // console.log('progressCount - ', progressCount);
 
     useEffect(() => 
         {

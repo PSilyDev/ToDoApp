@@ -5,12 +5,9 @@ import { LoginContext } from "../context/LoginContext";
 
 export default function ToDoCard({todo, date}) {
     const { updateCompleted, setTrigger, setDeleteId } = useContext(LoginContext);
-    // console.log('inside ToDoCard, todo passed - ', todo);
     const handleDeleteClick = (id) => {
         setDeleteId(id);
         setTrigger(true);
-        // console.log('resss - ', res);
-        // handleDelete(id);
     }
     return (
       <div className="bg-slate-800 rounded-md p-8">

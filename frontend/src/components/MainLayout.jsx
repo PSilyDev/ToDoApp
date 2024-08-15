@@ -11,9 +11,7 @@ export const MainLayout = () => {
 
     const navigate = useNavigate();
 
-    const {loggedIn, setUserData, setLoggedIn, todos, fetchToDos, updateCompleted, handleOnChange, setTodos} = useContext(LoginContext);
-
-    // console.log('Main Layput, logged In - ', loggedIn);
+    const {loggedIn, setUserData, setLoggedIn, setTodos} = useContext(LoginContext);
 
     const handleLogout = () => {
         // alert("logout successfull!");

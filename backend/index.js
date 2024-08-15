@@ -214,7 +214,7 @@ app.put('/inprogress', async(req, res) => {
     // console.log('res: ', response);
     // send back the res
     res.status(200).json({
-        msg: "Todo marked as completed."
+        msg: "Todo progress updated."
     })
 })
 

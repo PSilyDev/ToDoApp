@@ -3,7 +3,6 @@ export const Modal = (props) => {
     const handleClick = (selected) => {
         props.getSelected(selected);
         props.setTrigger(false);
-                
     }
 
     return (props.trigger) ? (
